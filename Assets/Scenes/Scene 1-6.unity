@@ -183,9 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9027168019f93a64c9e44d5d49f4391d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sphereTemplate: {fileID: 5132184532725265644, guid: 67efcd6804cc4a748af4d0ba1d860c68, type: 3}
+  _sphereTemplate: {fileID: 3131308189515434764, guid: 67efcd6804cc4a748af4d0ba1d860c68, type: 3}
   _spawnTime: 1
-  _rotation: {x: 0, y: 0.25881904, z: 0, w: 0.9659258}
+  _collectionPoint: {x: 0, y: 0, z: 10}
 --- !u!4 &418793821
 Transform:
   m_ObjectHideFlags: 0

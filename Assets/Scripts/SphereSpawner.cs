@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SphereSpawner : MonoBehaviour
 {
-    [SerializeField] private Transform _sphereTemplate;
+    [SerializeField] private SphereMovement _sphereTemplate;
     [SerializeField] private float _spawnTime;
-    [SerializeField] private Quaternion _rotation;
+    [SerializeField] private Vector3 _collectionPoint;
 
     private Transform[] _spawnpoints;
     private WaitForSeconds _waitTime;
@@ -28,8 +28,10 @@ public class SphereSpawner : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(_sphereTemplate, _spawnpoints[Random.Range(0, _spawnpoints.Length)].position, _rotation);
-            
+            var createdSphere = Instantiate(_sphereTemplate, _spawnpoints[Random.Range(0, _spawnpoints.Length)]);
+
+            createdSphere.CollectionPoint = _collectionPoint;
+
             yield return _waitTime;
         }
     }
