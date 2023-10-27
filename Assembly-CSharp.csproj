@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{79A7E1FC-FD05-D742-E017-6F077302258F}</ProjectGuid>
+    <ProjectGuid>{D89A11B2-2B3F-DBDB-B60B-67B4E4FDFC28}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -60,8 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\SphereMovement.cs" />
-    <Compile Include="Assets\Scripts\CubeRotaion.cs" />
-    <Compile Include="Assets\Scripts\CapsuleScale.cs" />
+    <Compile Include="Assets\Scripts\SphereSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
