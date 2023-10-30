@@ -11,6 +11,6 @@ public class EnemySpawnpoint : MonoBehaviour
     {
         var createdEnemy = Instantiate(_enemyPrefab, transform);
 
-        createdEnemy.Target = _enemyTarget.transform;
+        createdEnemy.SetTarget(_enemyTarget.transform);
     }
 }
