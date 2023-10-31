@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Anti-fraud alarm.unity
+- path: Assets/Anti-fraud alarm/Anti-fraud alarm.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
