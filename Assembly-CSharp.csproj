@@ -60,11 +60,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\2D platformer\Scripts\CoinPickUp.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\TriggerSystem.cs" />
+    <Compile Include="Assets\2D platformer\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\2D platformer\Scripts\KillPlayer.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawnpoint.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\TargetMovement.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ChangingVolume.cs" />
+    <Compile Include="Assets\2D platformer\Scripts\PlayerDeath.cs" />
+    <Compile Include="Assets\2D platformer\Scripts\WaypointMovement.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ThiefMovement.cs" />
   </ItemGroup>
   <ItemGroup>
