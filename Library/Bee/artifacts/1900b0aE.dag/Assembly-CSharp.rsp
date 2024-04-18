@@ -400,6 +400,10 @@
 "Assets/Anti-fraud alarm/Scripts/ChangingVolume.cs"
 "Assets/Anti-fraud alarm/Scripts/ThiefMovement.cs"
 "Assets/Anti-fraud alarm/Scripts/TriggerSystem.cs"
+"Assets/Bots collectors/Scripts/FoodSpawner.cs"
+"Assets/Counter/Scripts/Counter.cs"
+"Assets/Counter/Scripts/Score.cs"
+"Assets/Counter/Scripts/ScoreView.cs"
 -langversion:9.0
 
 /deterministic

@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             transform.Translate(new Vector3(_speed * -1 * Time.deltaTime, 0, 0));
+            
         }
 
         if (Input.GetKeyUp(KeyCode.A))
