@@ -3,7 +3,15 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    public int Value = 0;
+    public event Action ValueChanged;
 
-    public Action ScoreChanged;
+    private int _value = 0;
+    public int Value => _value;
+
+
+    public void ChangeValue(int valueToAdd)
+    {
+        _value += valueToAdd;
+        ValueChanged.Invoke();
+    }
 }

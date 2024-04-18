@@ -55,8 +55,7 @@ public class Counter : MonoBehaviour
     {
         while (_score != null)
         {
-            _score.Value += _amount;
-            _score.ScoreChanged.Invoke();
+            _score.ChangeValue(_amount);
 
             yield return _intervalInSeconds;
         }

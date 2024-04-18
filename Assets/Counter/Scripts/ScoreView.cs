@@ -15,7 +15,7 @@ public class ScoreView : MonoBehaviour
         if (_scoreText != null)
         {
             UpdateText();
-            _score.ScoreChanged += UpdateText;
+            _score.ValueChanged += UpdateText;
         }
     }
 
@@ -23,7 +23,7 @@ public class ScoreView : MonoBehaviour
     {
         if (_scoreText != null)
         {
-            _score.ScoreChanged -= UpdateText;
+            _score.ValueChanged -= UpdateText;
         }
     }
 
