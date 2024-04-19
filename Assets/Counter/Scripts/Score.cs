@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
+    private int _value = 0;
+
     public event Action ValueChanged;
 
-    private int _value = 0;
     public int Value => _value;
 
-
-    public void ChangeValue(int valueToAdd)
+    public void AddValue(int valueToAdd)
     {
         _value += valueToAdd;
         ValueChanged.Invoke();
