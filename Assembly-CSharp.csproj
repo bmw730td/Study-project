@@ -59,8 +59,11 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.11f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Explosions of cubes 2.0\Scripts\Division.cs" />
     <Compile Include="Assets\Counter\Scripts\Counter.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Explosions of cubes 2.0\Scripts\Explosion.cs" />
+    <Compile Include="Assets\Explosions of cubes 2.0\Scripts\ColorChanger.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\FoodSpawner.cs" />
     <Compile Include="Assets\2D platformer\Scripts\CoinPickUp.cs" />
     <Compile Include="Assets\Counter\Scripts\ScoreView.cs" />
@@ -68,8 +71,6 @@
     <Compile Include="Assets\Anti-fraud alarm\Scripts\TriggerSystem.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\2D platformer\Scripts\KillPlayer.cs" />
-    <Compile Include="Assets\Explosions of cubes\Scripts\Division.cs" />
-    <Compile Include="Assets\Explosions of cubes\Scripts\ColorChanger.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawnpoint.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\TargetMovement.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ChangingVolume.cs" />

@@ -404,8 +404,9 @@
 "Assets/Counter/Scripts/Counter.cs"
 "Assets/Counter/Scripts/Score.cs"
 "Assets/Counter/Scripts/ScoreView.cs"
-"Assets/Explosions of cubes/Scripts/ColorChanger.cs"
-"Assets/Explosions of cubes/Scripts/Division.cs"
+"Assets/Explosions of cubes 2.0/Scripts/ColorChanger.cs"
+"Assets/Explosions of cubes 2.0/Scripts/Division.cs"
+"Assets/Explosions of cubes 2.0/Scripts/Explosion.cs"
 -langversion:9.0
 
 /deterministic
