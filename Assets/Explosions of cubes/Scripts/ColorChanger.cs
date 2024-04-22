@@ -34,6 +34,6 @@ public class ColorChanger : MonoBehaviour
 
     private void ChangeColor()
     {
-        _material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        _material.color = new Color(Random.Range(_colorRedMin, _colorRedMax), Random.Range(_colorGreenMin, _colorGreenMax), Random.Range(_colorBlueMin, _colorBlueMax));
     }
 }

@@ -152,8 +152,9 @@ MonoBehaviour:
   _sizeMultiplier: 0.5
   _minDivisionFragments: 2
   _maxDivisionFragments: 6
+  _rigidbody: {fileID: 5868340971866480033}
   _explosionRadius: 50
-  _explosionForce: 5000
+  _explosionForce: 200
 --- !u!114 &6816611923516367818
 MonoBehaviour:
   m_ObjectHideFlags: 0

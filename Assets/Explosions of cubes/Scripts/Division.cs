@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+
 public class Division : MonoBehaviour
 {
     [SerializeField] private float _chanceToDivide = 100f;
@@ -9,6 +11,7 @@ public class Division : MonoBehaviour
     [SerializeField] private int _minDivisionFragments = 2;
     [SerializeField] private int _maxDivisionFragments = 6;
 
+    [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private float _explosionRadius;
     [SerializeField] private float _explosionForce;
 
@@ -28,13 +31,17 @@ public class Division : MonoBehaviour
 
             for (int i = 0; i < amountToInstantiate; i++)
             {
-                GameObject newSelf = Instantiate(gameObject);
-                Rigidbody newSelfRigidbody = newSelf.GetComponent<Rigidbody>();
+                Division newSelf = Instantiate(this);
 
-                newSelfRigidbody.AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
+                newSelf.ApplyExplosionForce();
             }
         }
 
         Destroy(gameObject);
+    }
+
+    private void ApplyExplosionForce()
+    {
+        _rigidbody.AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
     }
 }
