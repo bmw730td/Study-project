@@ -68,6 +68,8 @@
     <Compile Include="Assets\Anti-fraud alarm\Scripts\TriggerSystem.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\2D platformer\Scripts\KillPlayer.cs" />
+    <Compile Include="Assets\Explosions of cubes\Scripts\Division.cs" />
+    <Compile Include="Assets\Explosions of cubes\Scripts\ColorChanger.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawnpoint.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\TargetMovement.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ChangingVolume.cs" />

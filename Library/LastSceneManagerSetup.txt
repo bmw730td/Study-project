@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Counter/Scenes/Counter.unity
+- path: Assets/Explosions of cubes/Scenes/Explosions of cubes.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
