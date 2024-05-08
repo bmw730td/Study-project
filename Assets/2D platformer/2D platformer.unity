@@ -1031,7 +1031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 955285588}
   m_Layer: 0
-  m_Name: Respawn Point
+  m_Name: Player respawn point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1159,6 +1159,7 @@ GameObject:
   - component: {fileID: 1562104250}
   - component: {fileID: 1562104245}
   - component: {fileID: 1562104249}
+  - component: {fileID: 1562104251}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -1280,21 +1281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090e58a4f15928f42941ed0c7aaaffad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onTriggerEnter2D:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2078280929}
-        m_TargetAssemblyTypeName: PlayerDeath, Assembly-CSharp
-        m_MethodName: Die
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _player: {fileID: 2078280921}
 --- !u!61 &1562104250
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1340,6 +1327,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.46, y: 1.43}
   m_EdgeRadius: 0
+--- !u!114 &1562104251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562104244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d181b7f01fc5bb40a186ed6d72955ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerSensor: {fileID: 1562104249}
+  _player: {fileID: 2078280929}
 --- !u!1 &1798484046
 GameObject:
   m_ObjectHideFlags: 0

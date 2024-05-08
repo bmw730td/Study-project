@@ -59,6 +59,8 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.11f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Battle for platformer\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\ReloadSceneOnDeath.cs" />
     <Compile Include="Assets\Explosions of cubes 2.0\Scripts\Division.cs" />
     <Compile Include="Assets\Counter\Scripts\Counter.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemyMovement.cs" />
@@ -69,15 +71,25 @@
     <Compile Include="Assets\Counter\Scripts\ScoreView.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\TriggerSystem.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\PlayerPickUp.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerMovement.cs" />
-    <Compile Include="Assets\2D platformer\Scripts\KillPlayer.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\Health.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\Invulnerability.cs" />
+    <Compile Include="Assets\2D platformer\Scripts\PlayerKiller.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\PickUpAble.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawnpoint.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\TargetMovement.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ChangingVolume.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerDeath.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\AttackOnCollision.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\EnumPickUpAbles.cs" />
+    <Compile Include="Assets\2D platformer\Scripts\PlayerSensor.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\PickUpAbleEffects.cs" />
     <Compile Include="Assets\2D platformer\Scripts\WaypointMovement.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\DestroyOnDeath.cs" />
     <Compile Include="Assets\Counter\Scripts\Score.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ThiefMovement.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\EnemyMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
