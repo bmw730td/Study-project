@@ -6,18 +6,20 @@ namespace BattleForPlatformer
 
     public class AttackOnCollision : MonoBehaviour
     {
-        [SerializeField] private string _targetTag;
+        [SerializeField] private bool _isTargetPlayer;
         [SerializeField] private float _damage;
-        
+
         private void OnCollisionStay2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag(_targetTag))
+            if (_isTargetPlayer)
             {
-                if (collision.gameObject.TryGetComponent<Health>(out Health targetHealth))
-                {
+                if (collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth targetHealth))
                     targetHealth.TakeDamage(_damage);
-                }
-
+            }
+            else
+            {
+                if (collision.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth targetHealth))
+                    targetHealth.TakeDamage(_damage);
             }
         }
     }

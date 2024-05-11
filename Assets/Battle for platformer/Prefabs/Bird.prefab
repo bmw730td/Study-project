@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 8496334906492596223}
   - component: {fileID: 3273051807840302261}
   - component: {fileID: 2039407917438335763}
-  - component: {fileID: 6565439822821296049}
+  - component: {fileID: 1682667131916675364}
+  - component: {fileID: 5710358589020235668}
+  - component: {fileID: 7133994284237102835}
   - component: {fileID: 2754052136329278308}
   - component: {fileID: 4387916705406537948}
   m_Layer: 8
@@ -170,10 +172,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _path: {fileID: 0}
   _speed: 1.5
-  _player: {fileID: 0}
-  _playerCheckDistance: 2
+  _playerSensor: {fileID: 1682667131916675364}
   _chaseSpeed: 2
---- !u!114 &6565439822821296049
+--- !u!114 &1682667131916675364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,7 +183,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 5390227105455367032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed3d2054510c644fbf21e1cbcc800df, type: 3}
+  m_Script: {fileID: 11500000, guid: 8201d929a89503847b65b19f47c638d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _range: 3
+--- !u!114 &5710358589020235668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390227105455367032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8aefa16f82c50144a1593f783b81dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyMovement: {fileID: 2039407917438335763}
+  _spriteRenderer: {fileID: 4635025340689552172}
+--- !u!114 &7133994284237102835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390227105455367032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024a4d5af7a688245b8dcd039b5737e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 50
@@ -200,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e172dcdffa6f944ba5d026886fb0217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 6565439822821296049}
+  _health: {fileID: 7133994284237102835}
 --- !u!114 &4387916705406537948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,5 +241,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c70d9e9572fe974eb183f6f99741a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetTag: Player
+  _isTargetPlayer: 1
   _damage: 20

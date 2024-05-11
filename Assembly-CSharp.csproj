@@ -75,9 +75,12 @@
     <Compile Include="Assets\2D platformer\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Health.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Invulnerability.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\LookAtTarget.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerKiller.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\PlayerSensor.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\PickUpAble.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawnpoint.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\TargetMovement.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ChangingVolume.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerDeath.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="Assets\Battle for platformer\Scripts\DestroyOnDeath.cs" />
     <Compile Include="Assets\Counter\Scripts\Score.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ThiefMovement.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\EnemyHealth.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\EnemyMovement.cs" />
   </ItemGroup>
   <ItemGroup>

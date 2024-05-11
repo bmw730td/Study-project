@@ -20,7 +20,7 @@ namespace BattleForPlatformer
 
         private float _horizontalAxis;
 
-        void Update()
+        private void Update()
         {
             _horizontalAxis = Input.GetAxis("Horizontal");
 

@@ -4,7 +4,7 @@ namespace BattleForPlatformer
 {
     public class PickUpAbleEffects : MonoBehaviour
     {
-        [SerializeField] private Health _playerHealth;
+        [SerializeField] private PlayerHealth _playerHealth;
 
         [SerializeField] private float _medKitHealAmount;
 

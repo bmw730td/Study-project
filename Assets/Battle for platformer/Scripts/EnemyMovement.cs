@@ -2,33 +2,39 @@ using UnityEngine;
 
 namespace BattleForPlatformer
 {
+    [RequireComponent(typeof(PlayerSensor))]
+
     public class EnemyMovement : MonoBehaviour
     {
         [SerializeField] private Transform _path;
         [SerializeField] private float _speed;
 
-        [SerializeField] private PlayerMovement _player;
-        [SerializeField, Min(0f)] private float _playerCheckDistance;
+        [SerializeField] private PlayerSensor _playerSensor;
         [SerializeField] private float _chaseSpeed;
 
         private int _currentWaypointIndex = 0;
         private Transform _currentWaypoint;
+
+        public Transform CurrentTarget { get; private set; }
 
         private void Start()
         {
             _currentWaypoint = GetNextWaypoint();
             transform.position = _currentWaypoint.position;
             _currentWaypoint = GetNextWaypoint();
+            CurrentTarget = _currentWaypoint;
         }
 
         private void Update()
         {
-            if (Vector2.Distance(transform.position, _player.transform.position) <= _playerCheckDistance)
+            if (_playerSensor.IsPlayerInRange())
             {
+                CurrentTarget = _playerSensor.PlayerTransform;
                 ChasePlayer();
             }
             else
             {
+                CurrentTarget = _currentWaypoint;
                 MoveToCurrentWaypoint();
             }
         }
@@ -51,7 +57,7 @@ namespace BattleForPlatformer
 
         private void ChasePlayer()
         {
-            transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _chaseSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, _playerSensor.PlayerTransform.position, _chaseSpeed * Time.deltaTime);
         }
     }
 }
