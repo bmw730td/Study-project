@@ -14,14 +14,7 @@ namespace BattleForPlatformer
 
         private void OnValidate()
         {
-            if (_health > _maxHealth)
-            {
-                _health = _maxHealth;
-            }
-            else if( _health < _minHealth)
-            {
-                _health = _minHealth;
-            }
+            _health = Mathf.Clamp(_health, _minHealth, _maxHealth);
 
             if (_minHealth > _maxHealth)
                 _minHealth = _maxHealth;

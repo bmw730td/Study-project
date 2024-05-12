@@ -1,6 +1,3 @@
-using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleForPlatformer
@@ -9,6 +6,8 @@ namespace BattleForPlatformer
 
     public class PlayerMovement : MonoBehaviour
     {
+        private const string Horizontal = nameof(Horizontal);
+
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Animator _animator;
@@ -22,11 +21,12 @@ namespace BattleForPlatformer
 
         private void Update()
         {
-            _horizontalAxis = Input.GetAxis("Horizontal");
+            _horizontalAxis = Input.GetAxis(Horizontal);
 
             transform.Translate(_speed * Vector2.right * _horizontalAxis * Time.deltaTime);
-            _animator.SetFloat("HorizontalMovement", _horizontalAxis);
-            _animator.SetBool("IsMoving", _horizontalAxis != 0);
+
+            _animator.SetFloat(PlayerAnimatorData.Parameters.HorizontalMovement, _horizontalAxis);
+            _animator.SetBool(PlayerAnimatorData.Parameters.IsMoving, _horizontalAxis != 0);
 
             if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
                 _rigidbody.AddForce(_jumpPower * Vector2.up);

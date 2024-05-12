@@ -64,6 +64,7 @@
     <Compile Include="Assets\Explosions of cubes 2.0\Scripts\Division.cs" />
     <Compile Include="Assets\Counter\Scripts\Counter.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\PlayerAnimatorData.cs" />
     <Compile Include="Assets\Explosions of cubes 2.0\Scripts\Explosion.cs" />
     <Compile Include="Assets\Explosions of cubes 2.0\Scripts\ColorChanger.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\FoodSpawner.cs" />
@@ -75,13 +76,13 @@
     <Compile Include="Assets\2D platformer\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Health.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Invulnerability.cs" />
-    <Compile Include="Assets\Battle for platformer\Scripts\LookAtTarget.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerKiller.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\PlayerSensor.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\PickUpAble.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawnpoint.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\TargetMovement.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\TargetObserver.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ChangingVolume.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerDeath.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\AttackOnCollision.cs" />
