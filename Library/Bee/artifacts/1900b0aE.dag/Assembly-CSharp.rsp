@@ -401,6 +401,8 @@
 "Assets/Anti-fraud alarm/Scripts/ChangingVolume.cs"
 "Assets/Anti-fraud alarm/Scripts/ThiefMovement.cs"
 "Assets/Anti-fraud alarm/Scripts/TriggerSystem.cs"
+"Assets/Audio Mixer/Scripts/VolumeSlider.cs"
+"Assets/Audio Mixer/Scripts/VolumeToggler.cs"
 "Assets/Battle for platformer/Scripts/Camera/CameraMover.cs"
 "Assets/Battle for platformer/Scripts/Collectables/CoinCollectable.cs"
 "Assets/Battle for platformer/Scripts/Collectables/CollectableItem.cs"

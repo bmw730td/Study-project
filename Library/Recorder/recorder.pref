@@ -37,7 +37,7 @@ MonoBehaviour:
   m_Name: Movie
   m_EditorClassIdentifier: 
   enabled: 1
-  take: 34
+  take: 39
   captureEveryNthFrame: 1
   fileNameGenerator:
     m_Path:
@@ -50,7 +50,7 @@ MonoBehaviour:
   encoderSettings:
     rid: 6150411151723986946
   captureAlpha: 0
-  captureAudio: 0
+  captureAudio: 1
   m_ImageInputSelector:
     m_Selected: gameViewInputSettings
     gameViewInputSettings:
@@ -107,7 +107,7 @@ MonoBehaviour:
       colorSpace: 0
       flipFinalOutput: 0
   m_AudioInputSettings:
-    preserveAudio: 0
+    preserveAudio: 1
   _accumulationSettings:
     rid: 6150411151723986945
   outputFormat: 0
@@ -166,4 +166,4 @@ MonoBehaviour:
         encodingProfile: 2
         keyframeDistance: 25
         codec: 0
-        encodingQuality: 2
+        encodingQuality: 1

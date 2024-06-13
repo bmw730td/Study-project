@@ -64,10 +64,11 @@
     <Compile Include="Assets\Explosions of cubes 2.0\Scripts\Division.cs" />
     <Compile Include="Assets\Counter\Scripts\Counter.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Audio Mixer\Scripts\VolumeSlider.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Camera\CameraMover.cs" />
     <Compile Include="Assets\Explosions of cubes 2.0\Scripts\Explosion.cs" />
-    <Compile Include="Assets\Explosions of cubes 2.0\Scripts\ColorChanger.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Health\InvulnerabilityGiver.cs" />
+    <Compile Include="Assets\Explosions of cubes 2.0\Scripts\ColorChanger.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\FoodSpawner.cs" />
     <Compile Include="Assets\2D platformer\Scripts\CoinPickUp.cs" />
     <Compile Include="Assets\Counter\Scripts\ScoreView.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Anti-fraud alarm\Scripts\TriggerSystem.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Health\SceneReloader.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Audio Mixer\Scripts\VolumeToggler.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Collectables\Collector.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Enemy\ColliderAttack.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerKiller.cs" />
