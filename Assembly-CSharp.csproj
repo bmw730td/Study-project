@@ -77,6 +77,7 @@
     <Compile Include="Assets\Battle for platformer\Scripts\Enemy\TargetObserver.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Player\PlayerAnimatorData.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawner.cs" />
+    <Compile Include="Assets\Health indicator\Scripts\Buttons\TargetHealer.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\TriggerSystem.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Health\SceneReloader.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerMovement.cs" />
@@ -84,9 +85,12 @@
     <Compile Include="Assets\Battle for platformer\Scripts\Collectables\Collector.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Enemy\ColliderAttack.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerKiller.cs" />
+    <Compile Include="Assets\Health indicator\Scripts\Health\Health.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Player\PlayerAttack.cs" />
+    <Compile Include="Assets\Health indicator\Scripts\Buttons\TargetDamager.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Enemy\BirdMover.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawnpoint.cs" />
+    <Compile Include="Assets\Health indicator\Scripts\Health\SlowHealthBar.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\TargetMovement.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ChangingVolume.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerDeath.cs" />
@@ -98,8 +102,10 @@
     <Compile Include="Assets\Battle for platformer\Scripts\Input\Controls.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Health\SelfDestroyer.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Collectables\CoinCollectable.cs" />
+    <Compile Include="Assets\Health indicator\Scripts\Health\HealthView.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Collectables\MedKitCollectable.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Input\UserInput.cs" />
+    <Compile Include="Assets\Health indicator\Scripts\Health\HealthBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

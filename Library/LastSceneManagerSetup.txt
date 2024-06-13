@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Audio Mixer/Scenes/Audio Mixer.unity
+- path: Assets/Health indicator/Scenes/Health indicator.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -429,6 +429,12 @@
 "Assets/Explosions of cubes 2.0/Scripts/ColorChanger.cs"
 "Assets/Explosions of cubes 2.0/Scripts/Division.cs"
 "Assets/Explosions of cubes 2.0/Scripts/Explosion.cs"
+"Assets/Health indicator/Scripts/Buttons/TargetDamager.cs"
+"Assets/Health indicator/Scripts/Buttons/TargetHealer.cs"
+"Assets/Health indicator/Scripts/Health/Health.cs"
+"Assets/Health indicator/Scripts/Health/HealthBar.cs"
+"Assets/Health indicator/Scripts/Health/HealthView.cs"
+"Assets/Health indicator/Scripts/Health/SlowHealthBar.cs"
 -langversion:9.0
 
 /deterministic
