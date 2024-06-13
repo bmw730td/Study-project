@@ -1,35 +1,13 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace HealthBar
 {
-    [RequireComponent(typeof(Slider))]
-
-    public class SlowHealthBar : MonoBehaviour
+    public class SlowHealthBar : HealthBar
     {
-        [SerializeField] private Health _health;
         [SerializeField, Min(0f)] private float _transitionSpeed;
 
-        private Slider _slider;
         private float _sliderValueFraction;
         private float _healthValueFraction;
-
-        private void Awake()
-        {
-            _slider = GetComponent<Slider>();
-        }
-
-        private void OnEnable()
-        {
-            _health.HealthChanged += UpdateValueFractions;
-
-            UpdateValueFractions();
-        }
-
-        private void OnDisable()
-        {
-            _health.HealthChanged -= UpdateValueFractions;
-        }
 
         private void Update()
         {
@@ -41,7 +19,7 @@ namespace HealthBar
             }
         }
 
-        private void UpdateValueFractions()
+        protected override void UpdateValues()
         {
             _sliderValueFraction = (_slider.value - _slider.minValue) / (_slider.maxValue - _slider.minValue);
             _healthValueFraction = (_health.Value - _health.MinValue) / (_health.MaxValue - _health.MinValue);

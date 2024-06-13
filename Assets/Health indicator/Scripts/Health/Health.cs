@@ -30,28 +30,11 @@ namespace HealthBar
             HealthChanged?.Invoke();
         }
 
-        public void TakeDamage(float amount)
+        public void ChangeValue(float amount)
         {
-            if (amount < 0)
-                amount = 0;
-
-            _value -= amount;
-
-            if (_value < _minValue)
-                _value = _minValue;
-
-            HealthChanged?.Invoke();
-        }
-
-        public void TakeHeal(float amount)
-        {
-            if (amount < 0)
-                amount = 0;
-
             _value += amount;
 
-            if (_value > _maxValue)
-                _value = _maxValue;
+            _value = Mathf.Clamp(_value, _minValue, _maxValue);
 
             HealthChanged?.Invoke();
         }

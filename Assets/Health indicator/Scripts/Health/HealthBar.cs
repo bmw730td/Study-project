@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,28 +8,28 @@ namespace HealthBar
 
     public class HealthBar : MonoBehaviour
     {
-        [SerializeField] private Health _health;
+        [SerializeField] protected Health _health;
 
-        private Slider _slider;
+        protected Slider _slider;
 
         private void Awake()
         {
             _slider = GetComponent<Slider>();
         }
 
-        private void OnEnable()
+        protected void OnEnable()
         {
-            _health.HealthChanged += UpdateSlider;
+            _health.HealthChanged += UpdateValues;
 
-            UpdateSlider();
+            UpdateValues();
         }
 
-        private void OnDisable()
+        protected void OnDisable()
         {
-            _health.HealthChanged -= UpdateSlider;
+            _health.HealthChanged -= UpdateValues;
         }
 
-        private void UpdateSlider()
+        protected virtual void UpdateValues()
         {
             float healthValueFraction = (_health.Value - _health.MinValue) / (_health.MaxValue - _health.MinValue);
 
