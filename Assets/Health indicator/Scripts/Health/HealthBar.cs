@@ -6,32 +6,18 @@ namespace HealthBar
 {
     [RequireComponent(typeof(Slider))]
 
-    public class HealthBar : MonoBehaviour
+    public class HealthBar : HealthViewer
     {
-        [SerializeField] protected Health _health;
-
-        protected Slider _slider;
+        private Slider _slider;
 
         private void Awake()
         {
             _slider = GetComponent<Slider>();
         }
 
-        protected void OnEnable()
+        protected override void UpdateValues()
         {
-            _health.HealthChanged += UpdateValues;
-
-            UpdateValues();
-        }
-
-        protected void OnDisable()
-        {
-            _health.HealthChanged -= UpdateValues;
-        }
-
-        protected virtual void UpdateValues()
-        {
-            float healthValueFraction = (_health.Value - _health.MinValue) / (_health.MaxValue - _health.MinValue);
+            float healthValueFraction = (Health.Value - Health.MinValue) / (Health.MaxValue - Health.MinValue);
 
             _slider.value = _slider.minValue + (_slider.maxValue - _slider.minValue) * healthValueFraction;
         }

@@ -9,7 +9,7 @@ namespace HealthBar
         [SerializeField] private float _minValue;
         [SerializeField] private float _maxValue;
 
-        public event Action HealthChanged;
+        public event Action ValueChanged;
 
         public float Value => _value;
         public float MinValue => _minValue;
@@ -27,16 +27,33 @@ namespace HealthBar
         {
             _value = _maxValue;
 
-            HealthChanged?.Invoke();
+            ValueChanged?.Invoke();
         }
 
-        public void ChangeValue(float amount)
+        public void TakeDamage(float amount)
         {
+            if (amount < 0f)
+                amount = 0f;
+
+            _value -= amount;
+
+            if (_value < _minValue)
+                _value = _minValue;
+
+            ValueChanged?.Invoke();
+        }
+
+        public void TakeHeal(float amount)
+        {
+            if (amount < 0f)
+                amount = 0f;
+
             _value += amount;
 
-            _value = Mathf.Clamp(_value, _minValue, _maxValue);
+            if (_value > _maxValue)
+                _value = _maxValue;
 
-            HealthChanged?.Invoke();
+            ValueChanged?.Invoke();
         }
     }
 }

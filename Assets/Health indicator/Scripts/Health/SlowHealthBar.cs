@@ -1,13 +1,21 @@
+using BattleForPlatformer;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace HealthBar
 {
-    public class SlowHealthBar : HealthBar
+    public class SlowHealthBar : HealthViewer
     {
         [SerializeField, Min(0f)] private float _transitionSpeed;
-
+        
+        private Slider _slider;
         private float _sliderValueFraction;
         private float _healthValueFraction;
+
+        private void Awake()
+        {
+            _slider = GetComponent<Slider>();
+        }
 
         private void Update()
         {
@@ -22,7 +30,7 @@ namespace HealthBar
         protected override void UpdateValues()
         {
             _sliderValueFraction = (_slider.value - _slider.minValue) / (_slider.maxValue - _slider.minValue);
-            _healthValueFraction = (_health.Value - _health.MinValue) / (_health.MaxValue - _health.MinValue);
+            _healthValueFraction = (Health.Value - Health.MinValue) / (Health.MaxValue - Health.MinValue);
         }
     }
 }

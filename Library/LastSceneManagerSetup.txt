@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Rain of cubes/Scenes/Rain of cubes.unity
+- path: Assets/Health indicator/Scenes/Health indicator.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

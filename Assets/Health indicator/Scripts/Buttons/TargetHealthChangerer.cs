@@ -8,7 +8,8 @@ namespace HealthBar
     public class TargetHealthChanger : MonoBehaviour
     {
         [SerializeField] private Health _target;
-        [SerializeField] private float _power;
+        [SerializeField] private bool _isDamagingTarget;
+        [SerializeField, Min(0f)] private float _power;
 
         private Button _button;
 
@@ -29,7 +30,14 @@ namespace HealthBar
 
         private void ChangeHealthValue()
         {
-            _target.ChangeValue(_power);
+            if (_isDamagingTarget)
+            {
+                _target.TakeDamage(_power);
+            }
+            else
+            {
+                _target.TakeHeal(_power);
+            }
         }
     }
 }
