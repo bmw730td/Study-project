@@ -72,6 +72,7 @@
     <Compile Include="Assets\Explosions of cubes 2.0\Scripts\ColorChanger.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\FoodSpawner.cs" />
     <Compile Include="Assets\2D platformer\Scripts\CoinPickUp.cs" />
+    <Compile Include="Assets\Rain of cubes\Scripts\SelfReleaser.cs" />
     <Compile Include="Assets\Counter\Scripts\ScoreView.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Collectables\CollectableItem.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Enemy\PlayerSensor.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawnpoint.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\SlowHealthBar.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\TargetMovement.cs" />
+    <Compile Include="Assets\Rain of cubes\Scripts\DisposableActivator.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ChangingVolume.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerDeath.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerSensor.cs" />
@@ -101,8 +103,10 @@
     <Compile Include="Assets\Battle for platformer\Scripts\Input\Controls.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Health\SelfDestroyer.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Collectables\CoinCollectable.cs" />
+    <Compile Include="Assets\Rain of cubes\Scripts\ObjectSpawner.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\HealthView.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Collectables\MedKitCollectable.cs" />
+    <Compile Include="Assets\Rain of cubes\Scripts\ColorChanger.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Input\UserInput.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\HealthBar.cs" />
   </ItemGroup>
