@@ -1,4 +1,5 @@
 using UnityEngine;
+using HealthBar;
 
 namespace BattleForPlatformer
 {
@@ -15,12 +16,12 @@ namespace BattleForPlatformer
 
         private void OnEnable()
         {
-            _health.OnDeath += DestroySelf;
+            _health.ValueAtMin += DestroySelf;
         }
 
         private void OnDisable()
         {
-            _health.OnDeath -= DestroySelf;
+            _health.ValueAtMin -= DestroySelf;
         }
 
         private void DestroySelf()

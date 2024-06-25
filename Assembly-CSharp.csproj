@@ -60,12 +60,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Battle for platformer\Scripts\Player\PlayerMover.cs" />
-    <Compile Include="Assets\Battle for platformer\Scripts\Health\Health.cs" />
     <Compile Include="Assets\Explosions of cubes 2.0\Scripts\Division.cs" />
     <Compile Include="Assets\Counter\Scripts\Counter.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemyMovement.cs" />
     <Compile Include="Assets\Audio Mixer\Scripts\VolumeSlider.cs" />
-    <Compile Include="Assets\Battle for platformer\Scripts\Camera\CameraMover.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Buttons\TargetHealthChangerer.cs" />
     <Compile Include="Assets\Explosions of cubes 2.0\Scripts\Explosion.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Health\InvulnerabilityGiver.cs" />
@@ -96,6 +94,7 @@
     <Compile Include="Assets\Advanced enemy generation\Scripts\TargetMovement.cs" />
     <Compile Include="Assets\Rain of cubes\Scripts\DisposableActivator.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ChangingVolume.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\Health\MultiDestroyer.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerDeath.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerSensor.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Enemy\EnemyMover.cs" />
@@ -108,6 +107,7 @@
     <Compile Include="Assets\Rain of cubes\Scripts\ObjectSpawner.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Collectables\MedKitCollectable.cs" />
     <Compile Include="Assets\Rain of cubes\Scripts\ColorChanger.cs" />
+    <Compile Include="Assets\Battle for platformer\Scripts\Camera\FollowMover.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Input\UserInput.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\HealthBar.cs" />
   </ItemGroup>

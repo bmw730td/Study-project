@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using HealthBar;
 
 namespace BattleForPlatformer
 {
@@ -16,12 +17,12 @@ namespace BattleForPlatformer
 
         private void OnEnable()
         {
-            _health.OnDeath += ReloadScene;
+            _health.ValueAtMin += ReloadScene;
         }
 
         private void OnDisable()
         {
-            _health.OnDeath -= ReloadScene;
+            _health.ValueAtMin -= ReloadScene;
         }
 
         private void ReloadScene()
