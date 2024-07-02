@@ -17,12 +17,12 @@ namespace BattleForPlatformer
 
         private void OnEnable()
         {
-            _health.ValueAtMin += ReloadScene;
+            _health.ValueReachedMin += ReloadScene;
         }
 
         private void OnDisable()
         {
-            _health.ValueAtMin -= ReloadScene;
+            _health.ValueReachedMin -= ReloadScene;
         }
 
         private void ReloadScene()

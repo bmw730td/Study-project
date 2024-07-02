@@ -5,13 +5,16 @@ namespace HealthBar
 {
     public class Health : MonoBehaviour
     {
+        private const float MinAmountOfDamage = 0f;
+        private const float MinAmountOfHeal = 0f;
+        
         [SerializeField] private float _value;
         [SerializeField] private float _minValue;
         [SerializeField] private float _maxValue;
 
         public event Action ValueChanged;
         public event Action DamageReceived;
-        public event Action ValueAtMin;
+        public event Action ValueReachedMin;
 
         public float Value => _value;
         public float MinValue => _minValue;
@@ -34,30 +37,28 @@ namespace HealthBar
 
         public void TakeDamage(float amount)
         {
-            if (amount < 0f)
-                amount = 0f;
+            if (amount < MinAmountOfDamage)
+                amount = MinAmountOfDamage;
 
             _value -= amount;
 
-            if (_value < _minValue)
-                _value = _minValue;
+            _value = Math.Clamp(_value, _minValue, _maxValue);
 
             ValueChanged?.Invoke();
             DamageReceived?.Invoke();
 
             if (_value == _minValue)
-                ValueAtMin?.Invoke();
+                ValueReachedMin?.Invoke();
         }
 
         public void TakeHeal(float amount)
         {
-            if (amount < 0f)
-                amount = 0f;
+            if (amount < MinAmountOfHeal)
+                amount = MinAmountOfHeal;
 
             _value += amount;
 
-            if (_value > _maxValue)
-                _value = _maxValue;
+            _value = Math.Clamp(_value, _minValue, _maxValue);
 
             ValueChanged?.Invoke();
         }

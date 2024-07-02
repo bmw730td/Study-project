@@ -175,6 +175,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Ability",
+            "id": "e7e7a555-0cdd-4f35-87b9-ff2e82cc0d96",
+            "actions": [
+                {
+                    "name": "Vampiric Yodel",
+                    "type": "Button",
+                    "id": "17049025-5265-40b2-8f8e-64b8f8bbea05",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1ad8d5cc-3dc7-4d84-ae85-bf72fe83a473",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Vampiric Yodel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

@@ -16,12 +16,12 @@ namespace BattleForPlatformer
 
         private void OnEnable()
         {
-            _health.ValueAtMin += DestroySelf;
+            _health.ValueReachedMin += DestroySelf;
         }
 
         private void OnDisable()
         {
-            _health.ValueAtMin -= DestroySelf;
+            _health.ValueReachedMin -= DestroySelf;
         }
 
         private void DestroySelf()
