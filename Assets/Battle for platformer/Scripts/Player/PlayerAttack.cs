@@ -5,6 +5,7 @@ using HealthBar;
 
 namespace BattleForPlatformer
 {
+    [RequireComponent(typeof(UserInput))]
     [RequireComponent(typeof(Animator))]
     
     public class PlayerAttack : MonoBehaviour
@@ -18,6 +19,7 @@ namespace BattleForPlatformer
         [SerializeField, Min(0f)] private float _attackCircleRadius;
         [SerializeField] private LayerMask _enemyLayer;
 
+        private UserInput _userInput;
         private Animator _animator;
 
         private bool _isAbleToAttack = true;
@@ -26,6 +28,7 @@ namespace BattleForPlatformer
 
         private void Awake()
         {
+            _userInput = GetComponent<UserInput>();
             _animator = GetComponent<Animator>();
         }
 
@@ -36,7 +39,7 @@ namespace BattleForPlatformer
 
         private void Update()
         {
-            if (UserInput.Instance.Controls.Combat.Attack.WasPressedThisFrame() && _isAbleToAttack)
+            if (_userInput.Controls.Combat.Attack.WasPressedThisFrame() && _isAbleToAttack)
             {
                 StartCoroutine(AttackCoroutine());
             }

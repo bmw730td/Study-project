@@ -4,6 +4,8 @@ namespace BattleForPlatformer
 {
     public class SizeChanger : MonoBehaviour
     {
+        private const int RadiusesInDiameter = 2;
+
         [SerializeField] private AbilityVampiricYodel _ability;
 
         private void OnEnable()
@@ -24,7 +26,7 @@ namespace BattleForPlatformer
                                                    transform.localScale.y / transform.lossyScale.y,
                                                    transform.localScale.z / transform.lossyScale.z);
             
-            transform.localScale = globalMultiplier * _ability.Range * 2f;
+            transform.localScale = globalMultiplier * _ability.Range * RadiusesInDiameter;
         }
     }
 }

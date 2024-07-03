@@ -67,6 +67,7 @@
     <Compile Include="Assets\Audio Mixer\Scripts\VolumeSlider.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Buttons\TargetHealthChangerer.cs" />
     <Compile Include="Assets\Explosions of cubes 2.0\Scripts\Explosion.cs" />
+    <Compile Include="Assets\Bfp Ability\Scripts\VampiricYodelObjectSwitch.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Health\InvulnerabilityGiver.cs" />
     <Compile Include="Assets\Explosions of cubes 2.0\Scripts\ColorChanger.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\FoodSpawner.cs" />
@@ -108,7 +109,6 @@
     <Compile Include="Assets\Battle for platformer\Scripts\Collectables\CoinCollectable.cs" />
     <Compile Include="Assets\Rain of cubes\Scripts\ObjectSpawner.cs" />
     <Compile Include="Assets\Bfp Ability\Scripts\SizeChanger.cs" />
-    <Compile Include="Assets\Bfp Ability\Scripts\ObjectSwitch.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Collectables\MedKitCollectable.cs" />
     <Compile Include="Assets\Rain of cubes\Scripts\ColorChanger.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Camera\FollowMover.cs" />

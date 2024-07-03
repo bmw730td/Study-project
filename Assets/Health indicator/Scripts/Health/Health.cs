@@ -19,6 +19,7 @@ namespace HealthBar
         public float Value => _value;
         public float MinValue => _minValue;
         public float MaxValue => _maxValue;
+        public float LastDamageReceived { get; private set; }
 
         private void OnValidate()
         {
@@ -37,14 +38,12 @@ namespace HealthBar
 
         public void TakeDamage(float amount)
         {
-            if (amount < MinAmountOfDamage)
-                amount = MinAmountOfDamage;
-
+            amount = _value - Mathf.Clamp(_value - amount, _minValue, _maxValue);
             _value -= amount;
-
             _value = Math.Clamp(_value, _minValue, _maxValue);
 
             ValueChanged?.Invoke();
+            LastDamageReceived = amount;
             DamageReceived?.Invoke();
 
             if (_value == _minValue)
@@ -53,11 +52,8 @@ namespace HealthBar
 
         public void TakeHeal(float amount)
         {
-            if (amount < MinAmountOfHeal)
-                amount = MinAmountOfHeal;
-
+            amount = Mathf.Clamp(_value + amount, _minValue, _maxValue) - _value;
             _value += amount;
-
             _value = Math.Clamp(_value, _minValue, _maxValue);
 
             ValueChanged?.Invoke();

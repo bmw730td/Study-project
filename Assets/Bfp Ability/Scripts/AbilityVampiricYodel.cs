@@ -6,16 +6,19 @@ using HealthBar;
 
 namespace BattleForPlatformer
 {
+    [RequireComponent(typeof(UserInput))]
+    [RequireComponent(typeof(Health))]
+    
     public class AbilityVampiricYodel : AbilityBase
     {
         [SerializeField, Min(0f)] private float _duration;
         [SerializeField] private LayerMask _targetLayer;
         [SerializeField, Min(0f)] private float _range;
 
-        private float _durationTimer;
-        private Coroutine _durationTimerCounter;
-
+        private UserInput _userInput;
         private Health _health;
+
+        private float _durationTimer;
 
         public event Action Activated;
         public event Action Deactivated;
@@ -30,24 +33,16 @@ namespace BattleForPlatformer
 
         private void Awake()
         {
-            TryGetComponent(out _health);
+            _userInput = GetComponent<UserInput>();
+            _health = GetComponent<Health>();
         }
 
         private void Update()
         {
-            if (IsOnCooldown == false && UserInput.Instance.Controls.Ability.VampiricYodel.WasPerformedThisFrame())
+            if (_durationTimer == 0 && IsOnCooldown == false && _userInput.Controls.Ability.VampiricYodel.WasPerformedThisFrame())
             {
-                GoOnCooldown();
-                StartDrainingHealth();
+                StartCoroutine(DurationTimerCounter());
             }
-        }
-
-        private void StartDrainingHealth()
-        {
-            if (_durationTimer != 0)
-                StopCoroutine(_durationTimerCounter);
-
-            _durationTimerCounter = StartCoroutine(DurationTimerCounter());
         }
 
         private IEnumerator DurationTimerCounter()
@@ -71,6 +66,7 @@ namespace BattleForPlatformer
                 _durationTimer = 0f;
 
             Deactivated?.Invoke();
+            GoOnCooldown();
         }
         
         private List<Health> GetTargets()
@@ -90,9 +86,7 @@ namespace BattleForPlatformer
         private void DrainHealth(Health target)
         {
             target.TakeDamage(Power * Time.deltaTime);
-            
-            if (_health != null)
-                _health.TakeHeal(Power * Time.deltaTime);
+            _health.TakeHeal(target.LastDamageReceived);
         }
     }
 }

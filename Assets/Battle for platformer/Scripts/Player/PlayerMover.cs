@@ -2,8 +2,9 @@ using UnityEngine;
 
 namespace BattleForPlatformer
 {
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(UserInput))]
     [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Animator))]
 
     public class PlayerMover : MonoBehaviour
@@ -15,8 +16,9 @@ namespace BattleForPlatformer
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private float _groundCheckDistance;
 
-        private Rigidbody2D _rigidbody2D;
+        private UserInput _userInput;
         private Collider2D _collider2D;
+        private Rigidbody2D _rigidbody2D;
         private Animator _animator;
 
         private bool _playerWantsToMove;
@@ -26,11 +28,17 @@ namespace BattleForPlatformer
         private RaycastHit2D _groundHit;
         private bool _isFacingRight = true;
 
+        private void Awake()
+        {
+            _userInput = GetComponent<UserInput>();
+            _collider2D = GetComponent<Collider2D>();
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
+        }
+
         private void Start()
         {
-            _rigidbody2D = GetComponent<Rigidbody2D>();
-            _collider2D = GetComponent<Collider2D>();
-            _animator = GetComponent<Animator>();
+            _userInput.Controls.Movement.Move.performed += ctx => _playerMoveInput = ctx.ReadValue<Vector2>().x;
         }
 
         private void Update()
@@ -48,14 +56,11 @@ namespace BattleForPlatformer
         {
             if (_playerWantsToMove == false)
             {
-                _playerWantsToMove = UserInput.Instance.Controls.Movement.Move.IsPressed();
-
-                if (_playerWantsToMove)
-                    _playerMoveInput = UserInput.Instance.MoveInput.x;
+                _playerWantsToMove = _userInput.Controls.Movement.Move.IsPressed();
             }
 
             if (_playerWantsToJump == false)
-                _playerWantsToJump = UserInput.Instance.Controls.Movement.Jump.WasPressedThisFrame();
+                _playerWantsToJump = _userInput.Controls.Movement.Jump.WasPressedThisFrame();
         }
 
         private void TryMove()
@@ -66,7 +71,6 @@ namespace BattleForPlatformer
                 
                 _animator.SetBool(PlayerAnimatorData.Parameters.IsWalking, true);
 
-                _playerMoveInput = UserInput.Instance.MoveInput.x;
                 CheckFacingDirection();
 
                 transform.Translate(_moveSpeed * Vector2.right * _playerMoveInput * Time.deltaTime, Space.World);
