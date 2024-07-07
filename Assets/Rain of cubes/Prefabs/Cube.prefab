@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 714938850595356423}
   - component: {fileID: 9002944741851228739}
   - component: {fileID: 5833974279073880364}
-  - component: {fileID: 1110569979170073439}
   - component: {fileID: 8157631192335131370}
+  - component: {fileID: 1110569979170073439}
+  - component: {fileID: -2266588425948458878}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -149,6 +150,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetLayerNumber: 6
+--- !u!114 &8157631192335131370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956960263625002877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04775daca46b1947a62eb8003df54c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minDelay: 2
+  _maxDelay: 5
 --- !u!114 &1110569979170073439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +182,7 @@ MonoBehaviour:
   _maxGreen: 1
   _minBlue: 0
   _maxBlue: 1
---- !u!114 &8157631192335131370
+--- !u!114 &-2266588425948458878
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,8 +191,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 956960263625002877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04775daca46b1947a62eb8003df54c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5573af6096dcded419d51cabd54f28b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minDelay: 2
-  _maxDelay: 5
+  _spawner: {fileID: 0}

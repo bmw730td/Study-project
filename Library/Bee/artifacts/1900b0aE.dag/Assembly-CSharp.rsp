@@ -440,10 +440,19 @@
 "Assets/Health indicator/Scripts/Health/HealthTextViewer.cs"
 "Assets/Health indicator/Scripts/Health/HealthViewer.cs"
 "Assets/Health indicator/Scripts/Health/SlowHealthBar.cs"
-"Assets/Rain of cubes/Scripts/ColorChanger.cs"
-"Assets/Rain of cubes/Scripts/DisposableActivator.cs"
-"Assets/Rain of cubes/Scripts/ObjectSpawner.cs"
-"Assets/Rain of cubes/Scripts/SelfReleaser.cs"
+"Assets/Rain of cubes/Scripts/Spawners/IntervalSpawner.cs"
+"Assets/Rain of cubes/Scripts/Spawners/ObjectSpawner.cs"
+"Assets/Rain of cubes/Scripts/Spawners/ObjectWithSpawnerLinker.cs"
+"Assets/Rain of cubes/Scripts/Spawners/PositionRandomizer.cs"
+"Assets/Rain of cubes/Scripts/Spawners/TargetableSpawner.cs"
+"Assets/Rain of cubes/Scripts/Triggers/Effects/AlfaColorChanger.cs"
+"Assets/Rain of cubes/Scripts/Triggers/Effects/ColorChanger.cs"
+"Assets/Rain of cubes/Scripts/Triggers/Effects/Exploder.cs"
+"Assets/Rain of cubes/Scripts/Triggers/Effects/ObjectLeaver.cs"
+"Assets/Rain of cubes/Scripts/Triggers/Effects/SelfReleaser.cs"
+"Assets/Rain of cubes/Scripts/Triggers/OneShotTrigger.cs"
+"Assets/Rain of cubes/Scripts/Triggers/SummonTrigger.cs"
+"Assets/Rain of cubes/Scripts/Triggers/TargetReachTrigger.cs"
 -langversion:9.0
 
 /deterministic
