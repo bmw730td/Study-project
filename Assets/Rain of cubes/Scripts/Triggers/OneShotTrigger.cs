@@ -5,9 +5,9 @@ namespace RainOfCubes
 {
     public abstract class OneShotTrigger : MonoBehaviour
     {
-        public event Action Activated;
-
         private bool _isUsed = false;
+
+        public event Action Activated;
 
         private void OnDisable()
         {

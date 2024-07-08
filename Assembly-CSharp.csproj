@@ -93,7 +93,6 @@
     <Compile Include="Assets\2D platformer\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Rain of cubes\Scripts\Triggers\Effects\ObjectLeaver.cs" />
     <Compile Include="Assets\Audio Mixer\Scripts\VolumeToggler.cs" />
-    <Compile Include="Assets\Rain of cubes\Scripts\Spawners\ObjectWithSpawnerLinker.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Collectables\Collector.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Enemy\ColliderAttack.cs" />
     <Compile Include="Assets\2D platformer\Scripts\PlayerKiller.cs" />
@@ -101,6 +100,7 @@
     <Compile Include="Assets\Battle for platformer\Scripts\Player\PlayerAttack.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Enemy\BirdMover.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\EnemySpawnpoint.cs" />
+    <Compile Include="Assets\Rain of cubes\Scripts\Spawners\SpawnerViewer.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\SlowHealthBar.cs" />
     <Compile Include="Assets\Bfp Ability\Scripts\AbilityCooldownBar.cs" />
     <Compile Include="Assets\Advanced enemy generation\Scripts\TargetMovement.cs" />
@@ -113,6 +113,7 @@
     <Compile Include="Assets\Battle for platformer\Scripts\Enemy\EnemyMover.cs" />
     <Compile Include="Assets\2D platformer\Scripts\WaypointMovement.cs" />
     <Compile Include="Assets\Rain of cubes\Scripts\Spawners\IntervalSpawner.cs" />
+    <Compile Include="Assets\Rain of cubes\Scripts\Spawners\ObjectLeaverLinker.cs" />
     <Compile Include="Assets\Counter\Scripts\Score.cs" />
     <Compile Include="Assets\Anti-fraud alarm\Scripts\ThiefMovement.cs" />
     <Compile Include="Assets\Battle for platformer\Scripts\Input\Controls.cs" />

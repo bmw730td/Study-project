@@ -13,7 +13,7 @@ namespace RainOfCubes
         [SerializeField, Min(0f)] private float _maxDelay;
         
         private OneShotTrigger _trigger;
-        private ObjectPool<GameObject> _pool;
+        private ObjectPool<SelfReleaser> _pool;
 
         private float _delayCounter;
 
@@ -44,7 +44,7 @@ namespace RainOfCubes
             _trigger.Activated -= StartSelfRelease;
         }
 
-        public void SetPool(ObjectPool<GameObject> objectPool)
+        public void SetPool(ObjectPool<SelfReleaser> objectPool)
         {
             _pool = objectPool;
         }
@@ -74,7 +74,7 @@ namespace RainOfCubes
             }
 
             AboutToRealease?.Invoke();
-            _pool.Release(gameObject);
+            _pool.Release(this);
         }
     }
 }

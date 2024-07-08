@@ -20,6 +20,7 @@ namespace RainOfCubes
         {
             StartCoroutine(SpawnWithInterval());
         }
+
         private IEnumerator SpawnWithInterval()
         {
             while (true)

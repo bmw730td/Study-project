@@ -6,25 +6,45 @@ namespace RainOfCubes
 {
     public abstract class ObjectSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject _objectPrefab;
+        private const int PoolDefaultCapacity = 50;
+        private const int PoolMaxSize = 1000;
+        
+        [SerializeField] private SelfReleaser _objectPrefab;
 
-        private ObjectPool<GameObject> _pool;
+        private ObjectPool<SelfReleaser> _pool;
 
         private Vector3 _spawnPos;
 
-        public event Action<GameObject> WillAddToPool;
+        public event Action<GameObject> WillAddObjectToPool;
         public event Action<GameObject> WillSpawnObject;
+        public event Action ObjectSpawned;
+
+        public int ObjectsInPool
+        {
+            get
+            {
+                if (_pool == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return _pool.CountAll;
+                }
+            }
+        }
+        public int ObjectsSpawned { get; private set; }
 
         private void Awake()
         {
-            _pool = new ObjectPool<GameObject>(
+            _pool = new ObjectPool<SelfReleaser>(
                 createFunc: () => InitializeObject(),
                 actionOnGet: (obj) => ResetObj(obj),
-                actionOnRelease: (obj) => obj.SetActive(false),
+                actionOnRelease: (obj) => obj.gameObject.SetActive(false),
                 actionOnDestroy: (obj) => Destroy(obj),
                 collectionCheck: true,
-                defaultCapacity: 50,
-                maxSize: 1000);
+                defaultCapacity: PoolDefaultCapacity,
+                maxSize: PoolMaxSize);
         }
 
         protected void SpawnObj()
@@ -38,19 +58,17 @@ namespace RainOfCubes
             _pool.Get();
         }
 
-        private GameObject InitializeObject()
+        private SelfReleaser InitializeObject()
         {
-            GameObject newObject = Instantiate(_objectPrefab);
+            SelfReleaser newObject = Instantiate(_objectPrefab);
 
-            if (newObject.TryGetComponent(out SelfReleaser selfReleaser))
-                selfReleaser.SetPool(_pool);
-
-            WillAddToPool?.Invoke(newObject);
+            newObject.SetPool(_pool);
+            WillAddObjectToPool?.Invoke(newObject.gameObject);
 
             return newObject;
         }
 
-        private void ResetObj(GameObject obj)
+        private void ResetObj(SelfReleaser obj)
         {
             obj.transform.position = _spawnPos;
             obj.transform.rotation = _objectPrefab.transform.rotation;
@@ -61,8 +79,10 @@ namespace RainOfCubes
                 objRigidbody.angularVelocity = Vector3.zero;
             }
 
-            WillSpawnObject?.Invoke(obj);
-            obj.SetActive(true);
+            WillSpawnObject?.Invoke(obj.gameObject);
+            obj.gameObject.SetActive(true);
+            ObjectsSpawned++;
+            ObjectSpawned?.Invoke();
         }
     }
 }
