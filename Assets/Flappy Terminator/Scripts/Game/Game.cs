@@ -8,7 +8,7 @@ public class Game : MonoBehaviour
 
     [SerializeField] private BirdMover _birdMover;
     [SerializeField] private ObjectSpawner _spawner;
-    [SerializeField] private KeySpawner _keySpawner;
+    [SerializeField] private ObjectShooter _objectShooter;
     [SerializeField] private ScoreCounter _scoreCounter;
 
     private void OnEnable()
@@ -55,7 +55,7 @@ public class Game : MonoBehaviour
 
         _birdMover.Reset();
         _spawner.Reset();
-        _keySpawner.Reset();
+        _objectShooter.Reset();
         _scoreCounter.Reset();
     }
 }

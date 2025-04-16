@@ -4,11 +4,6 @@ public class EndScreen : Window
 {
     public event Action RestartButtonClicked;
 
-    protected override void OnButtonClick()
-    {
-        RestartButtonClicked?.Invoke();
-    }
-
     public override void Open()
     {
         WindowGroup.alpha = 1f;
@@ -21,5 +16,10 @@ public class EndScreen : Window
         WindowGroup.alpha = 0f;
         WindowGroup.blocksRaycasts = false;
         ActionButton.interactable = false;
+    }
+
+    protected override void OnButtonClick()
+    {
+        RestartButtonClicked?.Invoke();
     }
 }

@@ -1,18 +1,12 @@
+using System;
 using UnityEngine;
 
 public class SelfReturner : MonoBehaviour
 {
-    public ObjectSpawner Spawner;
+    public event Action<SelfReturner> ShouldBeReturned;
 
     public void ReturnSelf()
     {
-        if (Spawner != null)
-        {
-            Spawner.PutObject(this);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        ShouldBeReturned?.Invoke(this);
     }
 }

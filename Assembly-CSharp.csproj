@@ -81,10 +81,12 @@
     <Compile Include="Assets\Flappy Terminator\Scripts\Spawners\IntervalSpawner.cs" />
     <Compile Include="Assets\Flappy Terminator\Scripts\Game\Window.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\SlowHealthBar.cs" />
+    <Compile Include="Assets\Flappy Terminator\Scripts\Input\PlayerInput.cs" />
     <Compile Include="Assets\Flappy Terminator\Scripts\Spawners\ObjectReturner.cs" />
-    <Compile Include="Assets\Flappy Terminator\Scripts\Spawners\KeySpawner.cs" />
     <Compile Include="Assets\Flappy Terminator\Scripts\Interactables\BirdLaser.cs" />
     <Compile Include="Assets\Flappy Terminator\Scripts\Game\StartScreen.cs" />
+    <Compile Include="Assets\Flappy Terminator\Scripts\Spawners\ObjectShooter.cs" />
+    <Compile Include="Assets\Flappy Terminator\Scripts\Input\PlayerInputControls.cs" />
     <Compile Include="Assets\Flappy Terminator\Scripts\Game\EndScreen.cs" />
     <Compile Include="Assets\Flappy Terminator\Scripts\Camera\BirdTracker.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\HealthBar.cs" />

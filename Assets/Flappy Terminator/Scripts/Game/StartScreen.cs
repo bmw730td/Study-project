@@ -4,11 +4,6 @@ public class StartScreen : Window
 {
     public event Action PlayButtonClicked;
 
-    protected override void OnButtonClick()
-    {
-        PlayButtonClicked?.Invoke();
-    }
-
     public override void Open()
     {
         WindowGroup.alpha = 1f;
@@ -21,5 +16,10 @@ public class StartScreen : Window
         WindowGroup.alpha = 0f;
         WindowGroup.blocksRaycasts = false;
         ActionButton.interactable = false;
+    }
+
+    protected override void OnButtonClick()
+    {
+        PlayButtonClicked?.Invoke();
     }
 }

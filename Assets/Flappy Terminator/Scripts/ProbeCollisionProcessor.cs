@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CollisionHandler))]
@@ -9,7 +8,8 @@ public class ProbeCollisionProcessor : MonoBehaviour
 {
     private CollisionHandler _handler;
     private SelfReturner _returner;
-    private ScoreCounter _counter;
+
+    public event Action HitByPlayer;
 
     private void Awake()
     {
@@ -29,15 +29,10 @@ public class ProbeCollisionProcessor : MonoBehaviour
 
     private void ProcessCollision(IInteractable interactable)
     {
-        if (_counter == null)
-            _returner.Spawner.TryGetComponent(out _counter);
-        
-        switch (interactable)
+        if (interactable is BirdLaser)
         {
-            case BirdLaser:
-                _returner.ReturnSelf();
-                _counter.IncreaseScore();
-                break;
+            HitByPlayer?.Invoke();
+            _returner.ReturnSelf();
         }
     }
 }
