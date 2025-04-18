@@ -8,14 +8,9 @@ public class IntervalSpawner : ObjectSpawner
     private WaitForSeconds _intervalInSeconds;
     private Coroutine _spawningCoroutine;
 
-    private void OnValidate()
-    {
-        _intervalInSeconds = new WaitForSeconds(_interval);
-    }
-
     private void OnEnable()
     {
-       StartCoroutine();
+       StartSpawning();
     }
 
     private void OnDisable()
@@ -25,14 +20,17 @@ public class IntervalSpawner : ObjectSpawner
 
     private void Start()
     {
-        GameStarted += StartCoroutine;
+        _intervalInSeconds = new WaitForSeconds(_interval);
+    }
+
+    public override void Reset()
+    {
+        ResetPool();
+        StartSpawning();
     }
 
     private IEnumerator SpawnObjects()
     {
-        if (_intervalInSeconds == null)
-            _intervalInSeconds = new WaitForSeconds(_interval);
-        
         while (enabled)
         {
             yield return _intervalInSeconds;
@@ -41,7 +39,7 @@ public class IntervalSpawner : ObjectSpawner
         }
     }
 
-    private void StartCoroutine()
+    private void StartSpawning()
     {
         if (enabled)
         {

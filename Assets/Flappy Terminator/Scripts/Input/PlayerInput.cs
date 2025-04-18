@@ -16,7 +16,6 @@ public class PlayerInput : MonoBehaviour
 
             return _controls;
         }
-    
     }
 
     private void Awake()

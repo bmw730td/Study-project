@@ -7,7 +7,7 @@ public class BirdMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
-    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _jumpVelocity;
 
     private Rigidbody2D _rigidbody2D;
 
@@ -25,11 +25,6 @@ public class BirdMover : MonoBehaviour
         _startPosition = transform.position;
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
-
     public void Reset()
     {
         transform.position = _startPosition;
@@ -44,7 +39,7 @@ public class BirdMover : MonoBehaviour
 
     public void Jump()
     {
-        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpVelocity);
         
         Jumped?.Invoke();
     }

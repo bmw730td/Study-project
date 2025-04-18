@@ -22,32 +22,52 @@ public class Bird : MonoBehaviour
         _spawner = GetComponent<ObjectSpawner>();
     }
 
-    private void Start()
-    {
-        _mover.Jumped += _rotator.RotateBirdToMax;
-    }
-
     private void OnEnable()
     {
         _input.Controls.Player.Jump.started += ctx => _mover.Jump();
         _input.Controls.Player.Fire.started += ctx => _spawner.SpawnObject();
+
+        _rotator.Enabled += () => _mover.Jumped += _rotator.RotateBirdToMax;
+        _rotator.Disabled += () => _mover.Jumped -= _rotator.RotateBirdToMax;
     }
 
     private void OnDisable()
     {
         _input.Controls.Player.Jump.started -= ctx => _mover.Jump();
         _input.Controls.Player.Fire.started -= ctx => _spawner.SpawnObject();
+
+        _rotator.Enabled -= () => _mover.Jumped += _rotator.RotateBirdToMax;
+        _rotator.Disabled -= () => _mover.Jumped -= _rotator.RotateBirdToMax;
+        _mover.Jumped -= _rotator.RotateBirdToMax;
+    }
+
+    private void Start()
+    {
+        if (_rotator.enabled)
+        {
+            _mover.Jumped += _rotator.RotateBirdToMax;
+        }
+        else
+        {
+            _mover.Jumped -= _rotator.RotateBirdToMax;
+        }
     }
 
     private void FixedUpdate()
     {
-        _mover.Move();
-        _rotator.UpdateBirdRotation();
+        if (_mover.enabled)
+            _mover.Move();
+
+        if (_rotator.enabled)
+            _rotator.UpdateBirdRotation();
     }
 
     public void Reset()
     {
-        _mover.Reset();
-        _spawner.Reset();
+        if (_mover.enabled)
+            _mover.Reset();
+
+        if (_spawner.enabled)
+            _spawner.Reset();
     }
 }

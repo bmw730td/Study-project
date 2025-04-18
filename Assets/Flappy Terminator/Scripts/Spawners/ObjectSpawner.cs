@@ -13,9 +13,24 @@ public class ObjectSpawner : MonoBehaviour
     public event Action<SelfReturner> CreatedNewObject;
     public event Action<SelfReturner> WillSpawnObject;
 
-    protected event Action GameStarted;
+    public virtual void Reset()
+    {
+        ResetPool();
+    }
 
-    public void Reset()
+    public SelfReturner SpawnObject()
+    {
+        if (_pool.Count == 0)
+            _pool.Enqueue(CreateObject());
+
+        ResetObject(_pool.Peek());
+        WillSpawnObject?.Invoke(_pool.Peek());
+        _pool.Peek().gameObject.SetActive(true);
+
+        return _pool.Dequeue();
+    }
+
+    protected void ResetPool()
     {
         while (_createdObjects.Count > 0)
         {
@@ -30,19 +45,6 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         _pool.Clear();
-        GameStarted?.Invoke();
-    }
-
-    public SelfReturner SpawnObject()
-    {
-        if (_pool.Count == 0)
-            _pool.Enqueue(CreateObject());
-
-        ResetObject(_pool.Peek());
-        WillSpawnObject?.Invoke(_pool.Peek());
-        _pool.Peek().gameObject.SetActive(true);
-
-        return _pool.Dequeue();
     }
 
     private SelfReturner CreateObject()

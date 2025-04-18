@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BirdRotator : MonoBehaviour
@@ -9,10 +10,23 @@ public class BirdRotator : MonoBehaviour
     private Quaternion _maxRotation;
     private Quaternion _minRotation;
 
+    public event Action Enabled;
+    public event Action Disabled;
+
     private void OnValidate()
     {
         _maxRotation = Quaternion.Euler(0, 0, _maxRotationZ);
         _minRotation = Quaternion.Euler(0, 0, _minRotationZ);
+    }
+
+    private void OnEnable()
+    {
+        Enabled?.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        Disabled?.Invoke();
     }
 
     private void Start()

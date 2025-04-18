@@ -1,13 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Window : MonoBehaviour
+public class Window : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup _windowGroup;
     [SerializeField] private Button _actionButton;
 
-    protected CanvasGroup WindowGroup => _windowGroup;
-    protected Button ActionButton => _actionButton;
+    public event Action ButtonClicked;
 
     private void OnEnable()
     {
@@ -19,8 +18,8 @@ public abstract class Window : MonoBehaviour
         _actionButton.onClick.RemoveListener(OnButtonClick);
     }
 
-    public abstract void Open();
-    public abstract void Close();
-
-    protected abstract void OnButtonClick();
+    private void OnButtonClick()
+    {
+        ButtonClicked?.Invoke();
+    }
 }

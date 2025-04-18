@@ -25,9 +25,7 @@ public class BirdCollisionProcessor : MonoBehaviour
 
     private void ProcessCollision(IInteractable interactable)
     {
-        if (interactable is Ground ||
-            interactable is Probe ||
-            interactable is ProbeLaser)
+        if (interactable is not BirdLaser)
         {
             GameOver?.Invoke();
         }

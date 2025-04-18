@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 555880214}
   - component: {fileID: 555880213}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Start Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -568,7 +568,6 @@ GameObject:
   - component: {fileID: 613859750}
   - component: {fileID: 613859752}
   - component: {fileID: 613859751}
-  - component: {fileID: 613859754}
   - component: {fileID: 613859753}
   m_Layer: 5
   m_Name: Start Screen
@@ -644,23 +643,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 613859749}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d2b15fa206ca8440ba4dbd56ccc9309, type: 3}
+  m_Script: {fileID: 11500000, guid: bea77d1b2b8d79d4c84f8b7586dbaf5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windowGroup: {fileID: 613859754}
   _actionButton: {fileID: 555880213}
---- !u!225 &613859754
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613859749}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &692962097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,7 +990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2.5
-  _jumpForce: 4
+  _jumpVelocity: 4
 --- !u!50 &753103511
 Rigidbody2D:
   serializedVersion: 4
@@ -1576,7 +1562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _birdProcessor: {fileID: 753103514}
   _startScreen: {fileID: 613859753}
-  _endScreen: {fileID: 1376427504}
+  _endScreen: {fileID: 1376427508}
   _bird: {fileID: 753103519}
   _probeSpawner: {fileID: 899718501}
   _scoreCounter: {fileID: 899718504}
@@ -1869,7 +1855,6 @@ GameObject:
   - component: {fileID: 1376427507}
   - component: {fileID: 1376427506}
   - component: {fileID: 1376427508}
-  - component: {fileID: 1376427504}
   m_Layer: 5
   m_Name: End Screen
   m_TagString: Untagged
@@ -1877,20 +1862,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1376427504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376427503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fa7bf77adb096142ab4bfc7eceebc83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _windowGroup: {fileID: 1376427508}
-  _actionButton: {fileID: 1401369365}
 --- !u!224 &1376427505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1949,18 +1920,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376427503}
   m_CullTransparentMesh: 1
---- !u!225 &1376427508
-CanvasGroup:
+--- !u!114 &1376427508
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376427503}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea77d1b2b8d79d4c84f8b7586dbaf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionButton: {fileID: 1401369365}
 --- !u!1 &1401369364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,7 +1946,7 @@ GameObject:
   - component: {fileID: 1401369366}
   - component: {fileID: 1401369365}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Restart Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
