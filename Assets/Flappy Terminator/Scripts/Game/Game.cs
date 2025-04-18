@@ -6,9 +6,8 @@ public class Game : MonoBehaviour
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private EndScreen _endScreen;
 
-    [SerializeField] private BirdMover _birdMover;
-    [SerializeField] private ObjectSpawner _spawner;
-    [SerializeField] private ObjectShooter _objectShooter;
+    [SerializeField] private Bird _bird;
+    [SerializeField] private ObjectSpawner _probeSpawner;
     [SerializeField] private ScoreCounter _scoreCounter;
 
     private void OnEnable()
@@ -53,9 +52,8 @@ public class Game : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        _birdMover.Reset();
-        _spawner.Reset();
-        _objectShooter.Reset();
+        _bird.Reset();
+        _probeSpawner.Reset();
         _scoreCounter.Reset();
     }
 }

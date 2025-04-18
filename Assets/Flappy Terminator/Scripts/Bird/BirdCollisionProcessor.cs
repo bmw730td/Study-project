@@ -25,19 +25,11 @@ public class BirdCollisionProcessor : MonoBehaviour
 
     private void ProcessCollision(IInteractable interactable)
     {
-        switch (interactable)
+        if (interactable is Ground ||
+            interactable is Probe ||
+            interactable is ProbeLaser)
         {
-            case Ground:
-                GameOver?.Invoke();
-                break;
-
-            case Probe:
-                GameOver?.Invoke();
-                break;
-
-            case ProbeLaser:
-                GameOver?.Invoke();
-                break;
+            GameOver?.Invoke();
         }
     }
 }

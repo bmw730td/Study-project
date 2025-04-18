@@ -1,53 +1,33 @@
+using System;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(Rigidbody2D))]
 
 public class BirdMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
-    [SerializeField] private KeyCode _jumpKey;
     [SerializeField] private float _jumpForce;
 
-    [SerializeField] private float _rotationSpeed;
-    [SerializeField] private float _maxRotationZ;
-    [SerializeField] private float _minRotationZ;
-
-    private PlayerInput _playerInput;
     private Rigidbody2D _rigidbody2D;
 
     private Vector3 _startPosition;
-    private Quaternion _maxRotation;
-    private Quaternion _minRotation;
+
+    public event Action Jumped;
 
     private void Awake()
     {
-        _playerInput = GetComponent<PlayerInput>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnEnable()
-    {
-        _playerInput.Controls.Player.Jump.started += ctx => Jump();
-    }
-
-    private void OnDisable()
-    {
-        _playerInput.Controls.Player.Jump.started -= ctx => Jump();
     }
 
     private void Start()
     {
         _startPosition = transform.position;
-
-        _maxRotation = Quaternion.Euler(0, 0, _maxRotationZ);
-        _minRotation = Quaternion.Euler(0, 0, _minRotationZ);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, _minRotation, _rotationSpeed * Time.deltaTime);
+        
     }
 
     public void Reset()
@@ -57,9 +37,15 @@ public class BirdMover : MonoBehaviour
         _rigidbody2D.velocity = Vector2.zero;
     }
 
-    private void Jump()
+    public void Move()
     {
-        _rigidbody2D.velocity = new Vector2(_speed, _jumpForce);
-        transform.rotation = _maxRotation;
+        _rigidbody2D.velocity = new Vector2(_speed, _rigidbody2D.velocity.y);
+    }
+
+    public void Jump()
+    {
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
+        
+        Jumped?.Invoke();
     }
 }

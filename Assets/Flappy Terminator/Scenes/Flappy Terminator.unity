@@ -205,12 +205,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2e373c3395b328d4396b52a93487c13d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 701cb6fd63e11ee449f199ed85a94479, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 5, y: 0.35}
+  m_Size: {x: 5, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -280,7 +280,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0.12}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.56, y: 0.32}
-    newSize: {x: 5, y: 0.35}
+    newSize: {x: 5, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -476,8 +476,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278976644
+  m_fontColor: {r: 0.5188679, g: 0, b: 0.046997562, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -911,10 +911,12 @@ GameObject:
   - component: {fileID: 753103512}
   - component: {fileID: 753103511}
   - component: {fileID: 753103516}
+  - component: {fileID: 753103519}
   - component: {fileID: 753103510}
-  - component: {fileID: 753103514}
+  - component: {fileID: 753103517}
   - component: {fileID: 753103513}
-  - component: {fileID: 753103515}
+  - component: {fileID: 753103514}
+  - component: {fileID: 753103518}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1002,11 +1004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2.5
-  _jumpKey: 32
   _jumpForce: 4
-  _rotationSpeed: 1
-  _maxRotationZ: 35
-  _minRotationZ: -60
 --- !u!50 &753103511
 Rigidbody2D:
   serializedVersion: 4
@@ -1093,20 +1091,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaeb8a8744515fe41b4c3bae205433ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &753103515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753103506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 882795fa79e08d74990b775bbae5bae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _objectPrefab: {fileID: 7933895129997689033, guid: e1e15820c27ba274e8570bd1af10e3d2, type: 3}
-  _maxPoolSize: 10
 --- !u!114 &753103516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,6 +1101,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10c4d3a817d06f74788335a936346d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &753103517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753103506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a1a43f18fd8764e9b1baed21182d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 1
+  _maxRotationZ: 35
+  _minRotationZ: -60
+--- !u!114 &753103518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753103506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759b30f0b6a505643a8d7027c2868fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectPrefab: {fileID: 7933895129997689033, guid: e1e15820c27ba274e8570bd1af10e3d2, type: 3}
+  _maxPoolSize: 10
+--- !u!114 &753103519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753103506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7f7c2f672f9df4c947bb439b231f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &899718498
@@ -1464,7 +1489,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.99519974, g: 1, b: 0.8352941, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1552,9 +1577,8 @@ MonoBehaviour:
   _birdProcessor: {fileID: 753103514}
   _startScreen: {fileID: 613859753}
   _endScreen: {fileID: 1376427504}
-  _birdMover: {fileID: 753103510}
-  _spawner: {fileID: 899718501}
-  _objectShooter: {fileID: 753103515}
+  _bird: {fileID: 753103519}
+  _probeSpawner: {fileID: 899718501}
   _scoreCounter: {fileID: 899718504}
 --- !u!1 &1323522480
 GameObject:

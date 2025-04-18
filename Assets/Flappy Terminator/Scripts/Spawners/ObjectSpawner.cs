@@ -33,7 +33,7 @@ public class ObjectSpawner : MonoBehaviour
         GameStarted?.Invoke();
     }
 
-    protected SelfReturner SpawnObject()
+    public SelfReturner SpawnObject()
     {
         if (_pool.Count == 0)
             _pool.Enqueue(CreateObject());
