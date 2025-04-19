@@ -11,7 +11,7 @@ public class TweenReColorer : MonoBehaviour
     [SerializeField, Min(-1)] private int _amountOfLoops;
     [SerializeField] private LoopType _loopType;
 
-    MeshRenderer _renderer;
+    private MeshRenderer _renderer;
 
     private void Awake()
     {

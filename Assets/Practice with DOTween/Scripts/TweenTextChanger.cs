@@ -2,6 +2,8 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Text))]
+
 public class TweenTextChanger : MonoBehaviour
 {
     [SerializeField] private string _textToReWrite;
@@ -18,8 +20,6 @@ public class TweenTextChanger : MonoBehaviour
 
     private Text _text;
 
-    private Sequence _changingSequence;
-
     private void Awake()
     {
         _text = GetComponent<Text>();
@@ -27,7 +27,7 @@ public class TweenTextChanger : MonoBehaviour
 
     private void Start()
     {
-        _changingSequence = DOTween.Sequence()
+        Sequence changingSequence = DOTween.Sequence()
             .Append(_text.DOText(_textToReWrite, _reWritingDuration))
             .Append(_text.DOText(_textToAdd, _addingDuration).SetRelative())
             .Append(_text.DOText(_text.text, _scramblingDuration, scrambleMode: _scrambleMode))
