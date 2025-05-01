@@ -19,6 +19,7 @@ public class BotBase : MonoBehaviour
 
     private List<int> _expectedValues;
     private List<Resource> _knownResources;
+    private List<Resource> _ignoringResources;
     private bool _needToScan;
 
     private WaitForSeconds _waitScanCooldown;
@@ -59,7 +60,7 @@ public class BotBase : MonoBehaviour
         }
 
         _knownResources ??= new();
-
+        _ignoringResources ??= new();
         _needToScan = false;
 
         StartScanningCoroutine();
@@ -101,6 +102,7 @@ public class BotBase : MonoBehaviour
         Resource broughtResource = bringer.GiveResource();
 
         DecreaseExpectedValues(broughtResource.Type);
+        _ignoringResources.Remove(broughtResource);
         _storage.PutResourceIn(broughtResource);
 
         if (broughtResource.TryGetComponent(out ReturnAnnouncer announcer))
@@ -164,7 +166,7 @@ public class BotBase : MonoBehaviour
 
             foreach (Resource resourse in _scanner.ScanGround())
             {
-                if (_knownResources.Contains(resourse) == false)
+                if (_knownResources.Contains(resourse) == false && _ignoringResources.Contains(resourse) == false)
                     _knownResources.Add(resourse);
             }
 
@@ -193,6 +195,7 @@ public class BotBase : MonoBehaviour
                             if (TrySendBot(_knownResources[index]))
                             {
                                 _expectedValues[i] += Resource.Value;
+                                _ignoringResources.Add(_knownResources[index]);
                                 _knownResources.RemoveAt(index);
                             }
                             else
