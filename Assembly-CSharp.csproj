@@ -59,16 +59,27 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.11f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Practice with DOTween\Scripts\TweenMover.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Buttons\TargetHealthChangerer.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\HealthTextViewer.cs" />
-    <Compile Include="Assets\Practice with DOTween\Scripts\TweenReSizer.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Spawner\SpawnerWarmUper.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\UI\Billboard.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Spawner\RotationRandomizer.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Spawner\ReturnAnnouncer.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Spawner\ObjectSpawner.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Spawner\IntervaledActivator.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\HealthViewer.cs" />
-    <Compile Include="Assets\Practice with DOTween\Scripts\TweenRotator.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\UI\StorageViewer.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Resources\Resource.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Resources\EnumResourceType.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\Health.cs" />
-    <Compile Include="Assets\Practice with DOTween\Scripts\TweenTextChanger.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\UI\StorageUnitViewer.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Bot Base\BotBase.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Bot Base\ResourceStorageUnit.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\SlowHealthBar.cs" />
-    <Compile Include="Assets\Practice with DOTween\Scripts\TweenReColorer.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Bot Base\ResourceStorage.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Bot\ResourceBringer.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Bot Base\ResourceScanner.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Spawner\PositionRandomizer.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\HealthBar.cs" />
   </ItemGroup>
   <ItemGroup>
