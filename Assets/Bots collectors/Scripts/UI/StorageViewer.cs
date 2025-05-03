@@ -9,7 +9,7 @@ public class StorageViewer : MonoBehaviour
     {
         StorageUnitViewer newViewer;
 
-        foreach (ResourceStorageUnit unit in _storage.Units)
+        foreach (ResourceStorageSlot unit in _storage.Slots)
         {
             newViewer = Instantiate(_unitViewerPrefab, parent: transform);
             newViewer.SetStorageUnit(unit);

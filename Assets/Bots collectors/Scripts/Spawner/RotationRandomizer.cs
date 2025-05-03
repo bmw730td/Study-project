@@ -7,13 +7,13 @@ public class RotationRandomizer : MonoBehaviour
     [SerializeField] private float _minYRotation;
     [SerializeField] private float _maxYRotation;
 
+    private ObjectSpawner _spawner;
+
     private void OnValidate()
     {
         if (_maxYRotation < _minYRotation)
             _maxYRotation = _minYRotation;
     }
-
-    private ObjectSpawner _spawner;
 
     private void Awake()
     {

@@ -5,32 +5,26 @@ public class StorageUnitViewer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _unitValues;
 
-    private ResourceStorageUnit _storageUnit;
+    private ResourceStorageSlot _storageUnit;
 
-    private void OnEnable()
+    private void OnDestroy()
     {
         if (_storageUnit != null)
-            _storageUnit.AmountChanged += UpdateUnitValuesText;
+            _storageUnit.AmountChanged -= UpdateText;
     }
 
-    private void OnDisable()
-    {
-        if (_storageUnit != null)
-            _storageUnit.AmountChanged += UpdateUnitValuesText;
-    }
-
-    public void SetStorageUnit(ResourceStorageUnit unit)
+    public void SetStorageUnit(ResourceStorageSlot unit)
     {
         _storageUnit = unit;
 
         if (enabled && _storageUnit != null)
         {
-            UpdateUnitValuesText();
-            _storageUnit.AmountChanged += UpdateUnitValuesText;
+            UpdateText();
+            _storageUnit.AmountChanged += UpdateText;
         }
     }
 
-    private void UpdateUnitValuesText()
+    private void UpdateText()
     {
         _unitValues.text = $"{_storageUnit.Type}: {_storageUnit.Amount}/{_storageUnit.Capacity}";
     }

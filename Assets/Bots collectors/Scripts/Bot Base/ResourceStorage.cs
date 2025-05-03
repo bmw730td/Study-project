@@ -1,30 +1,58 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceStorage : MonoBehaviour
 {
-    [SerializeField] private List<ResourceStorageUnit> _units;// wtf
+    [SerializeField] private List<ResourceStorageSlot> _slots;
 
-    public List<ResourceStorageUnit> Units => _units;
-
-    private void OnValidate()
+    public List<ResourceStorageSlot> Slots => _slots;
+    public Dictionary<EnumResourceType, ResourceStorageSlot> TypeSlotPairs { get; private set; }
+    public bool IsFull
     {
-        if (Units.Count > 0)
+        get
         {
-            foreach (ResourceStorageUnit unit in _units)
+            foreach (ResourceStorageSlot slot in _slots)
             {
-                unit.CheckAmount();
+                if (slot.ExpectedAmount < slot.Capacity)
+                    return false;
             }
+
+            return true;
+        }
+    }
+
+    private void Awake()
+    {
+        TypeSlotPairs = new();
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < _slots.Count; i++)
+        {
+            TypeSlotPairs.Add(_slots[i].Type, _slots[i]);
         }
     }
 
     public void PutResourceIn(Resource resource)
     {
-        foreach(ResourceStorageUnit unit in _units)
+        foreach (ResourceStorageSlot slot in _slots)
         {
-            if (unit.Type == resource.Type)
-                unit.ChangeAmount(Resource.Value);
+            if (slot.Type == resource.Type)
+                slot.ChangeAmount(Resource.Value);
+        }
+    }
+
+    public void TryFillSelf(Func<EnumResourceType, bool> tryingFillFunc)
+    {
+        foreach (ResourceStorageSlot slot in _slots)
+        {
+            while (slot.ExpectedAmount < slot.Capacity)
+            {
+                if (tryingFillFunc(slot.Type) == false)
+                    break;
+            }
         }
     }
 }

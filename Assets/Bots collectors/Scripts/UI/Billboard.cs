@@ -4,7 +4,7 @@ public class Billboard : MonoBehaviour
 {
     private Transform _camera;
 
-    private void Start()
+    private void Awake()
     {
         _camera = Camera.main.transform;
     }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceBringer : MonoBehaviour
@@ -25,7 +24,7 @@ public class ResourceBringer : MonoBehaviour
     public Resource Resource => _resourceInHands;
 
 
-    public event Action<ResourceBringer> TaskDone;// should "give"(?) _resourceInHands
+    public event Action<ResourceBringer> TaskDone;
     public event Action<EnumResourceType, Resource> TaskFailed;
 
     private void Awake()
