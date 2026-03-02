@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(ResourceScanner))]
@@ -8,13 +8,15 @@ public class ScanProcessor : MonoBehaviour
 {
     private ResourceScanner _scanner;
 
-    public Dictionary<EnumResourceType, List<Resource>> KnownResources { get; private set; }
+    private Dictionary<ResourceType, List<Resource>> _knownResources;
+    private List<Resource> _blacklist;
 
     private void Awake()
     {
         _scanner = GetComponent<ResourceScanner>();
 
-        KnownResources = new();
+        _knownResources = new();
+        _blacklist = new();
     }
 
     private void OnEnable()
@@ -27,21 +29,45 @@ public class ScanProcessor : MonoBehaviour
         _scanner.ScanCompleted -= ProcessScanResults;
 
         ClearKnownResources();
+        _blacklist.Clear();
     }
 
-    private void ProcessScanResults()
+    public Resource GetKnownResource(ResourceType type)
     {
-        foreach (Resource resourse in _scanner.LastResults)
+        Resource resourceToGive;
+
+        if (_knownResources.ContainsKey(type))
         {
-            if (KnownResources.ContainsKey(resourse.Type) == false)
+            resourceToGive = _knownResources[type].FirstOrDefault();
+
+            if (resourceToGive != null)
             {
-                KnownResources.Add(resourse.Type, new() { resourse });
-                resourse.Disabled += RemoveResourceOnDisable;
+                _knownResources[type].Remove(resourceToGive);
+                _blacklist.Add(resourceToGive);
+
+                return resourceToGive;
             }
-            else if (KnownResources[resourse.Type].Contains(resourse) == false)
+        }
+
+        return null;
+    }
+
+    private void ProcessScanResults(List<Resource> results)
+    {
+        foreach (Resource resourse in results)
+        {
+            if (_blacklist.Contains(resourse) == false)
             {
-                KnownResources[resourse.Type].Add(resourse);
-                resourse.Disabled += RemoveResourceOnDisable;
+                if (_knownResources.ContainsKey(resourse.Type) == false)
+                {
+                    _knownResources.Add(resourse.Type, new() { resourse });
+                    resourse.Disabled += RemoveResourceOnDisable;
+                }
+                else if (_knownResources[resourse.Type].Contains(resourse) == false)
+                {
+                    _knownResources[resourse.Type].Add(resourse);
+                    resourse.Disabled += RemoveResourceOnDisable;
+                }
             }
         }
     }
@@ -49,12 +75,14 @@ public class ScanProcessor : MonoBehaviour
     private void RemoveResourceOnDisable(Resource resource)
     {
         resource.Disabled -= RemoveResourceOnDisable;
-        KnownResources[resource.Type].Remove(resource);
+        
+        if (_blacklist.Contains(resource))
+            _blacklist.Remove(resource);
     }
 
     private void ClearKnownResources()
     {
-        foreach (List<Resource> resourseList in KnownResources.Values)
+        foreach (List<Resource> resourseList in _knownResources.Values)
         {
             foreach (Resource resource in resourseList)
             {
@@ -62,6 +90,6 @@ public class ScanProcessor : MonoBehaviour
             }
         }
         
-        KnownResources.Clear();
+        _knownResources.Clear();
     }
 }

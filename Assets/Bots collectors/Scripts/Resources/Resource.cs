@@ -1,36 +1,50 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(BoxCollider))]
+
 public class Resource : MonoBehaviour
 {
-    public static readonly int Value = 1;
-    
-    [SerializeField] private EnumResourceType _type;
+    public readonly int Value = 1;
+
+    [SerializeField] private ResourceType _resourceType;
+
+    private MeshFilter _filter;
+    private MeshRenderer _renderer;
+    private BoxCollider _collider;
 
     public event Action<Resource> Disabled;
 
-    public EnumResourceType Type => _type;
-    public bool IsGrabbable => gameObject.transform.parent == null;
-    public bool IsReserved { get; private set; }
+    public ResourceType Type => _resourceType;
 
-    private void OnEnable()
+    private void Awake()
     {
-        UnReserve();
+        _filter = GetComponent<MeshFilter>();
+        _renderer = GetComponent<MeshRenderer>();
+        _collider = GetComponent<BoxCollider>();
     }
 
     private void OnDisable()
     {
-        UnReserve();
         Disabled?.Invoke(this);
     }
 
-    public void Reserve()
+    [ContextMenu(nameof(SetType))]
+    public void SetType(ResourceType type)
     {
-        IsReserved = true;
-    }
+        if (_resourceType != type)
+        {
+            _resourceType = type;
 
-    public void UnReserve()
-    {
-        IsReserved = false;
+            transform.localScale = _resourceType.Scale;
+
+            _filter.mesh = _resourceType.Mesh;
+            _renderer.material = _resourceType.Material;
+
+            _collider.center = _resourceType.ColliderCenter;
+            _collider.size = _resourceType.ColliderSize;
+        }
     }
 }

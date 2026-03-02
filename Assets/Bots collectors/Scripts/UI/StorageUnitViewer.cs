@@ -10,7 +10,7 @@ public class StorageUnitViewer : MonoBehaviour
     private void OnDestroy()
     {
         if (_storageUnit != null)
-            _storageUnit.AmountChanged -= UpdateText;
+            _storageUnit.AmountChanged -= (ctx1, ctx2) => UpdateText();
     }
 
     public void SetStorageUnit(ResourceStorageSlot unit)
@@ -20,12 +20,12 @@ public class StorageUnitViewer : MonoBehaviour
         if (enabled && _storageUnit != null)
         {
             UpdateText();
-            _storageUnit.AmountChanged += UpdateText;
+            _storageUnit.AmountChanged += (ctx1, ctx2) => UpdateText();
         }
     }
 
     private void UpdateText()
     {
-        _unitValues.text = $"{_storageUnit.Type}: {_storageUnit.Amount}/{_storageUnit.Capacity}";
+        _unitValues.text = $"{_storageUnit.Type.Name}: {_storageUnit.Amount}/{_storageUnit.Capacity}";
     }
 }

@@ -9,29 +9,32 @@ public class ResourceScanner : MonoBehaviour
     [SerializeField] private float _scanRadius;
     [SerializeField] private LayerMask _groundLayer;
 
-    public event Action ScanCompleted;
-
-    public List<Resource> LastResults { get; private set; }
+    public event Action<List<Resource>> ScanCompleted;
 
     public void ScanGround()
     {
-        LastResults = new();
-        Vector3 scanPosition = new Vector3(
-            UnityEngine.Random.Range(_ground.bounds.min.x, _ground.bounds.max.x),
-            _ground.bounds.max.y,
-            UnityEngine.Random.Range(_ground.bounds.min.z, _ground.bounds.max.z));
-
-        Physics.Raycast(scanPosition, Vector3.down, out RaycastHit hitInfo, _ground.bounds.max.y - _ground.bounds.min.y, _groundLayer);
-        scanPosition = hitInfo.point;
+        List<Resource> results = new();
+        Vector3 scanPosition = GetRandomPosition();
 
         Collider[] hits = Physics.OverlapSphere(scanPosition, _scanRadius);
-        
+
         foreach (Collider hit in hits)
         {
             if (hit.TryGetComponent(out Resource resource))
-                LastResults.Add(resource);
+                results.Add(resource);
         }
 
-        ScanCompleted?.Invoke();
+        ScanCompleted?.Invoke(results);
+    }
+
+    private Vector3 GetRandomPosition()
+    {
+        Vector3 randomPosition =  new Vector3(UnityEngine.Random.Range(_ground.bounds.min.x, _ground.bounds.max.x),
+                                              _ground.bounds.max.y,
+                                              UnityEngine.Random.Range(_ground.bounds.min.z, _ground.bounds.max.z));
+
+        Physics.Raycast(randomPosition, Vector3.down, out RaycastHit randomMaxYhit, _ground.bounds.max.y - _ground.bounds.min.y, _groundLayer);
+
+        return randomMaxYhit.point;
     }
 }

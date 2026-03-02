@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e850112a593eef4088e7a8d561e4266, type: 3}
+  m_Name: Mushroom
+  m_EditorClassIdentifier: 
+  _name: Food
+  _scale: {x: 4.5, y: 4.5, z: 4.5}
+  _mesh: {fileID: -7818595843673011575, guid: d062f5c56ffb55c4f832432ada269abe, type: 3}
+  _material: {fileID: 2100000, guid: 93caadf4359ae8143aad35b3145d31af, type: 2}
+  _center: {x: 0.00725552, y: 0.17022088, z: 0.0030555537}
+  _size: {x: 0.2252474, y: 0.34067428, z: 0.22224514}

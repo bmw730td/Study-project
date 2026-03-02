@@ -9,13 +9,16 @@ public class ObjectPool
     private ReturnAnnouncer _objectPrefab;
     private Transform _spawnPoint;
     private Action<ReturnAnnouncer> _onObjectCreated;
+    private Action<ReturnAnnouncer> _onObjectWillDestroy;
     private int _capacity;
 
-    public ObjectPool(ReturnAnnouncer objectPrefab, Transform spawnPoint, Action<ReturnAnnouncer> onObjectCreated, int capacity)
+    public ObjectPool(ReturnAnnouncer objectPrefab, Transform spawnPoint,
+                      Action<ReturnAnnouncer> onObjectCreated, Action<ReturnAnnouncer> onObjectWillDestroy, int capacity)
     {
         _objectPrefab = objectPrefab;
         _spawnPoint = spawnPoint;
         _onObjectCreated = onObjectCreated;
+        _onObjectWillDestroy = onObjectWillDestroy;
         _capacity = capacity;
 
         _pool = new();
@@ -57,6 +60,7 @@ public class ObjectPool
 
         while (_pool.Count > _capacity)
         {
+            _onObjectWillDestroy?.Invoke(obj);
             UnityEngine.Object.Destroy(_pool.Dequeue());
         }
     }

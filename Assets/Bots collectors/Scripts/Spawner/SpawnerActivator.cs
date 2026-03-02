@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(ObjectSpawner))]
 
-public class IntervaledActivator : MonoBehaviour
+public class SpawnerActivator : MonoBehaviour
 {
     [SerializeField, Min(0f)] private float _interval;
     
