@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: 4d3fa8026efc73d4f9163782def8c8c4
+guid: 0db21d8007fc37145b92888eb85ccab0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _botBasePrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

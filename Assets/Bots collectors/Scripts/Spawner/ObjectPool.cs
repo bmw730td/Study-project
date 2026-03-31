@@ -12,6 +12,10 @@ public class ObjectPool
     private Action<ReturnAnnouncer> _onObjectWillDestroy;
     private int _capacity;
 
+    public event Action ReceivedObject;
+
+    public int Count => _pool.Count;
+
     public ObjectPool(ReturnAnnouncer objectPrefab, Transform spawnPoint,
                       Action<ReturnAnnouncer> onObjectCreated, Action<ReturnAnnouncer> onObjectWillDestroy, int capacity)
     {
@@ -57,6 +61,7 @@ public class ObjectPool
         obj.gameObject.SetActive(false);
 
         _pool.Enqueue(obj);
+        ReceivedObject?.Invoke();
 
         while (_pool.Count > _capacity)
         {

@@ -133,7 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db21d8007fc37145b92888eb85ccab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxInteractionRange: 1
+  _maxInteractionRange: 0.8
+  _botBasePrefab: {fileID: 6074043930708246072, guid: 4312e5362becec949a11660e2bb39c2d, type: 3}
 --- !u!114 &6095088339724623796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6de5865167e8c349b57f8b7f3f1f210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
+  _speed: 5
 --- !u!114 &333486343403132797
 MonoBehaviour:
   m_ObjectHideFlags: 0

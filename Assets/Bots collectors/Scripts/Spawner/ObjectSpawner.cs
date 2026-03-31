@@ -15,12 +15,16 @@ public class ObjectSpawner : MonoBehaviour
     public event Action<ReturnAnnouncer> CreatedNewObject;
     public event Action<ReturnAnnouncer> WillSpawnObject;
     public event Action<ReturnAnnouncer> WillDestroyObject;
+    public event Action ReceivedObject;
 
     public List<ReturnAnnouncer> CreatedObjects => _createdObjects;
+    public int ActiveBotsAmount => _createdObjects.Count - _pool.Count;
+    public bool WillDestroyNewObject => ActiveBotsAmount >= _maxPoolSize;
 
     private void Awake()
     {
         _pool = new(_objectPrefab, transform, ProcessNewObject, RemoveObject, _maxPoolSize);
+        _pool.ReceivedObject += () => ReceivedObject?.Invoke();
         _createdObjects = new();
     }
 

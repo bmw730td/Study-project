@@ -1,65 +1,86 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(ResourceStorage))]
 
 public class StorageChecker : MonoBehaviour
 {
+    private readonly int MinRequiredResourceTypesToReset = 0;
+    private readonly int MaxResourceAmountToCompleteGoal = 0;
+
+    [SerializeField] private List<GoalRequirements> _allGoalRequirements;
+
     private readonly int BaseRequiredResourcesAmount = 0;
 
     private ResourceStorage _storage;
-
     private Dictionary<ResourceType, int> _requiredResources;
+    private bool _shouldRemoveResources;
 
     public event Action GoalSet;
+    public event Action<BaseGoals> GoalDone;
+
+    public BaseGoals CurrentGoal { get; private set; }
 
     private void Awake()
     {
         _storage = GetComponent<ResourceStorage>();
 
         _requiredResources = new();
-        ResetRequirements();
     }
 
     private void OnEnable()
     {
-        ResourceStorageSlot slot;
-
-        foreach (ResourceType type in _requiredResources.Keys)
-        {
-            slot = _storage.GetSlot(type);
-
-            if (slot != null)
-                slot.AmountChanged += UpdateRequiredAmount;
-        }
+        ResetRequirements(shouldBeSubscribed: true);
     }
 
     private void OnDisable()
     {
-        ResetRequirements();
+        ResetRequirements(shouldBeSubscribed: false);
     }
 
-    private void Start()
+    public void SetGoal(BaseGoals goal)
     {
-        SetGoalFillStorage();
+        CurrentGoal = goal;
+
+        switch (CurrentGoal)
+        {
+            case BaseGoals.None:
+                _shouldRemoveResources = false;
+                ResetRequirements(shouldBeSubscribed: false);
+
+                break;
+
+            case BaseGoals.FillStorage:
+                SetRequirementsToFillStorage();
+
+                break;
+
+            case BaseGoals.MakeBot:
+                SetRequirements();
+
+                break;
+
+            case BaseGoals.BuildBase:
+                SetRequirements();
+
+                break;
+        }
+
+        GoalSet?.Invoke();
     }
 
     public Dictionary<ResourceType, int> GetRequiredResources()
     {
-        Dictionary<ResourceType, int> requiredResourcesCopy = new();
-
-        requiredResourcesCopy.AddRange(_requiredResources);
-
-        return requiredResourcesCopy;
+        return _requiredResources.ToDictionary(pair => pair.Key, pair => pair.Value);
     }
 
-    public int GetRequiredAmount(ResourceType resourceType)
+    public int GetRequiredAmount(ResourceType type)
     {
-        if (_requiredResources.ContainsKey(resourceType))
+        if (_requiredResources.ContainsKey(type))
         {
-            return _requiredResources[resourceType];
+            return _requiredResources[type];
         }
         else
         {
@@ -67,25 +88,89 @@ public class StorageChecker : MonoBehaviour
         }
     }
 
-    private void ResetRequirements()
+    public bool CheckIfStorageIsFull()
     {
-        ResourceStorageSlot slot;
-
-        foreach (ResourceType type in _requiredResources.Keys)
+        foreach (ResourceStorageSlot slot in _storage.GetAllSlots())
         {
-            slot = _storage.GetSlot(type);
-
-            if (slot != null)
-                slot.AmountChanged -= UpdateRequiredAmount;
+            if (slot.Amount < slot.Capacity)
+                return false;
         }
 
-        _requiredResources.Clear();
+        return true;
     }
 
-    private void SetGoalFillStorage()
+    private void ResetRequirements(bool shouldBeSubscribed)
     {
-        ResetRequirements();
-        
+        if (_requiredResources.Count > MinRequiredResourceTypesToReset)
+        {
+            ResourceStorageSlot slot;
+
+            foreach (ResourceType type in _requiredResources.Keys)
+            {
+                slot = _storage.GetSlot(type);
+
+                if (slot != null)
+                {
+                    if (shouldBeSubscribed)
+                    {
+                        slot.AmountChanged += UpdateRequiredAmount;
+                    }
+                    else
+                    {
+                        slot.AmountChanged -= UpdateRequiredAmount;
+                    }
+                }
+            }
+
+            if (shouldBeSubscribed == false)
+                _requiredResources.Clear();
+        }
+    }
+
+    private void UpdateRequiredAmount(ResourceStorageSlot storageSlot, int change)
+    {
+        _requiredResources[storageSlot.Type] -= change;
+
+        if (_requiredResources[storageSlot.Type] <= MaxResourceAmountToCompleteGoal)
+            TryEndGoal();
+    }
+
+    private void TryEndGoal()
+    {
+        bool isGoalDone = true;
+
+        foreach (int amount in _requiredResources.Values)
+        {
+            if (amount > 0)
+                isGoalDone = false;
+        }
+
+        if (isGoalDone)
+        {
+            ResetRequirements(shouldBeSubscribed: false);
+
+            if (_shouldRemoveResources)
+                RemoveResources();
+
+            GoalDone?.Invoke(CurrentGoal);
+        }
+    }
+
+    private void RemoveResources()
+    {
+        Dictionary<ResourceType, int> resourcesToRemove = _allGoalRequirements.First(requirements => requirements.Goal == CurrentGoal).GetRequiredAmount();
+
+        foreach (ResourceType type in resourcesToRemove.Keys)
+        {
+            _storage.RemoveResource(type, resourcesToRemove[type]);
+        }
+    }
+
+    private void SetRequirementsToFillStorage()
+    {
+        _shouldRemoveResources = false;
+        ResetRequirements(shouldBeSubscribed: false);
+
         foreach (ResourceStorageSlot slot in _storage.GetAllSlots())
         {
             if (slot.Capacity - slot.Amount > 0)
@@ -95,11 +180,46 @@ public class StorageChecker : MonoBehaviour
             }
         }
 
-        GoalSet?.Invoke();
+        TryEndGoal();
     }
 
-    private void UpdateRequiredAmount(ResourceStorageSlot storageSlot, int change)
+    private void SetRequirements()
     {
-        _requiredResources[storageSlot.Type] -= change;
+        _shouldRemoveResources = true;
+        ResetRequirements(shouldBeSubscribed: false);
+
+        Dictionary<ResourceType, int> currentGoalRequirements = _allGoalRequirements.First(requirements => requirements.Goal == CurrentGoal).GetRequiredAmount();
+
+        foreach (ResourceType type in currentGoalRequirements.Keys)
+        {
+            _requiredResources.Add(type, currentGoalRequirements[type] - _storage.GetAmount(type));
+        }
+
+        ResetRequirements(shouldBeSubscribed: true);
+        TryEndGoal();
+    }
+
+    [Serializable]
+    private class GoalRequirements
+    {
+        [SerializeField] private BaseGoals _goal;
+        [SerializeField] private List<GoalRequirement> _resourceRequirements;
+
+        public BaseGoals Goal => _goal;
+
+        public Dictionary<ResourceType, int> GetRequiredAmount()
+        {
+            return _resourceRequirements.ToDictionary(requirement => requirement.Type, requirement => requirement.Amount);
+        }
+    }
+
+    [Serializable]
+    private class GoalRequirement
+    {
+        [SerializeField] private ResourceType _type;
+        [SerializeField] private int _amount;
+
+        public ResourceType Type => _type;
+        public int Amount => _amount;
     }
 }

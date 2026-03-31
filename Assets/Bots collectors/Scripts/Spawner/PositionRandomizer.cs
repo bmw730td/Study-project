@@ -5,6 +5,7 @@ using UnityEngine;
 public class PositionRandomizer : MonoBehaviour
 {
     [SerializeField] private BoxCollider[] _spawnAreas;
+    [SerializeField] private Vector3 _offset;
 
     private ObjectSpawner _spawner;
 
@@ -31,6 +32,6 @@ public class PositionRandomizer : MonoBehaviour
 
         obj.transform.position = new Vector3(Random.Range(lowestPosition.x, highestPosition.x),
                                              Random.Range(lowestPosition.y, highestPosition.y),
-                                             Random.Range(lowestPosition.z, highestPosition.z));
+                                             Random.Range(lowestPosition.z, highestPosition.z)) + _offset;
     }
 }

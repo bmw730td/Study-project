@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,28 +7,31 @@ using UnityEngine;
 [RequireComponent(typeof(ObjectSpawner))]
 [RequireComponent(typeof(ResourceStorage))]
 [RequireComponent(typeof(StorageChecker))]
-[RequireComponent(typeof(ScanProcessor))]
 
 public class BotSender : MonoBehaviour
 {
     private readonly int BaseResourceGain = 0;
 
+    [SerializeField] private ScanProcessor _scanProcessor;
+
     private ObjectSpawner _spawner;
     private ResourceStorage _storage;
     private StorageChecker _storageChecker;
-    private ScanProcessor _scanProcessor;
 
-    private List<BotController> _bots;
+    private List<Bot> _bots;
 
     private Coroutine _sendingCoroutine;
     private Dictionary<ResourceType, int> _resourceGain;
+
+    public event Action<Bot> SentBotBuildBase;
+
+    public ScanProcessor ScanProcessor => _scanProcessor;
 
     private void Awake()
     {
         _spawner = GetComponent<ObjectSpawner>();
         _storage = GetComponent<ResourceStorage>();
         _storageChecker = GetComponent<StorageChecker>();
-        _scanProcessor = GetComponent<ScanProcessor>();
 
         _bots = new();
         _resourceGain = new();
@@ -54,19 +58,51 @@ public class BotSender : MonoBehaviour
             StopCoroutine(_sendingCoroutine);
     }
 
+    public void SetScanProcessor(ScanProcessor processor)
+    {
+        _scanProcessor = processor;
+    }
+
+    public void StartBuildingBase(Vector3 target)
+    {
+        _storageChecker.GoalSet -= StartSendingBots;
+
+        if (_sendingCoroutine != null)
+            StopCoroutine(_sendingCoroutine);
+
+        _sendingCoroutine = StartCoroutine(SendBotBuildBase(target));
+    }
+
+    private IEnumerator SendBotBuildBase(Vector3 target)
+    {
+        Bot freeBot;
+
+        while(TryGetFreeBot(out freeBot) == false)
+        {
+            yield return null;
+        }
+
+        freeBot.StartBuildingBase(target, this);
+        freeBot.TaskDone += DestroyBot;
+        SentBotBuildBase?.Invoke(freeBot);
+
+        _storageChecker.GoalSet += StartSendingBots;
+        StartSendingBots();
+    }
+
     private void StartSendingBots()
     {
         if (_sendingCoroutine != null)
             StopCoroutine(_sendingCoroutine);
 
-        _sendingCoroutine = StartCoroutine(SendBots());
+        _sendingCoroutine = StartCoroutine(SendBotsAfterResources());
     }
 
-    private IEnumerator SendBots()
+    private IEnumerator SendBotsAfterResources()
     {
         UpdateResourceGain(_storageChecker.GetRequiredResources().Keys);
 
-        BotController freeBot;
+        Bot freeBot;
 
         while (CheckIfRequireResources())
         {
@@ -74,19 +110,26 @@ public class BotSender : MonoBehaviour
 
             freeBot = _bots.FirstOrDefault(bot => bot.IsBusy == false);
 
-            if (freeBot != null)
+            if (TryGetFreeBot(out freeBot))
             {
                 if (GetWantedResource(out Resource wantedResource))
                 {
                     _resourceGain[wantedResource.Type] += wantedResource.Value;
-                    freeBot.ResourceBrought += ProcessBot;
+                    freeBot.TaskDone += StoreBotResource;
                     freeBot.StartBringingResource(wantedResource, transform);
                 }
             }
         }
     }
 
-    public bool CheckIfRequireResources()
+    private bool TryGetFreeBot(out Bot freeBot)
+    {
+        freeBot = _bots.FirstOrDefault(bot => bot.IsBusy == false && bot.gameObject.activeSelf == true);
+
+        return freeBot != null;
+    }
+
+    private bool CheckIfRequireResources()
     {
         foreach (ResourceType type in _storageChecker.GetRequiredResources().Keys)
         {
@@ -123,7 +166,7 @@ public class BotSender : MonoBehaviour
         {
             foreach (ReturnAnnouncer obj in _spawner.CreatedObjects)
             {
-                if (obj.TryGetComponent(out BotController bot))
+                if (obj.TryGetComponent(out Bot bot))
                     _bots.Add(bot);
             }
         }
@@ -131,7 +174,7 @@ public class BotSender : MonoBehaviour
 
     private void AddBot(ReturnAnnouncer obj)
     {
-        if (obj.TryGetComponent(out BotController bot))
+        if (obj.TryGetComponent(out Bot bot))
         {
             if (_bots.Contains(bot) == false)
             {
@@ -142,7 +185,7 @@ public class BotSender : MonoBehaviour
 
     private void RemoveBot(ReturnAnnouncer obj)
     {
-        if (obj.TryGetComponent(out BotController bot))
+        if (obj.TryGetComponent(out Bot bot))
         {
             if (_bots.Contains(bot))
             {
@@ -151,14 +194,28 @@ public class BotSender : MonoBehaviour
         }
     }
 
-    private void ProcessBot(BotController bot)
+    private void StoreBotResource(Bot bot)
     {
-        bot.ResourceBrought -= ProcessBot;
+        bot.TaskDone -= StoreBotResource;
 
         Resource broughtResource = bot.ReleaseResource();
 
         _resourceGain[broughtResource.Type] -= broughtResource.Value;
         _storage.PutResourceIn(broughtResource);
+    }
+
+    private void DestroyBot(Bot bot)
+    {
+        bot.TaskDone -= DestroyBot;
+
+        if (bot.TryGetComponent(out ReturnAnnouncer announcer))
+        {
+            announcer.AnnounceReturn();
+        }
+        else
+        {
+            Destroy(bot.gameObject);
+        }
     }
 
     private void UpdateResourceGain(IEnumerable<ResourceType> trackingTypes)
@@ -170,7 +227,7 @@ public class BotSender : MonoBehaviour
             _resourceGain.Add(type, BaseResourceGain);
         }
 
-        foreach (BotController bot in _bots)
+        foreach (Bot bot in _bots)
         {
             if (bot.TargetResource != null)
             {

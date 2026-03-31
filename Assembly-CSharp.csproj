@@ -60,35 +60,44 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Bots collectors\Scripts\Bot\BotMover.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\UI\CameraWatcher.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Input\PlayerInput.cs" />
     <Compile Include="Assets\Testing\Scripts\ConsoleLogger.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Spawner\ResourceConfigSetter.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Buttons\TargetHealthChangerer.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Bot Base\ScanProcessor.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Bot Base\FlagPlacer.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\UI\StorageSlotViewer.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Bot Base\ResourceStorageSlot.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\HealthTextViewer.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Spawner\SpawnerWarmUper.cs" />
-    <Compile Include="Assets\Bots collectors\Scripts\UI\Billboard.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Spawner\RotationRandomizer.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Spawner\ReturnAnnouncer.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Spawner\ObjectSpawner.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Spawner\SpawnerActivator.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Resources\ResourceConfig.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\HealthViewer.cs" />
-    <Compile Include="Assets\Bots collectors\Scripts\Bot\BotController.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\UI\StorageViewer.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Resources\Resource.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Resources\ResourceType.cs" />
-    <Compile Include="Assets\Bots collectors\Scripts\Spawner\ResourceTypeSetter.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Input\InputReader.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\Health.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Spawner\ObjectPool.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Bot Base\BotSender.cs" />
-    <Compile Include="Assets\Bots collectors\Scripts\UI\StorageUnitViewer.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Input\IUsable.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\SlowHealthBar.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Bot Base\ResourceStorage.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Bot\ResourceCarrier.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Bot Base\ScannerActivator.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Bot Base\BotBaseBuilder.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Other\Ground.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Bot Base\BaseGoals.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Bot Base\GoalSetter.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Bot Base\ResourceScanner.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Bot Base\StorageChecker.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Spawner\PositionRandomizer.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\HealthBar.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Bot\Bot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

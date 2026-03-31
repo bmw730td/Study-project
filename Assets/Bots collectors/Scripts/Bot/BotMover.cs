@@ -23,6 +23,14 @@ public class BotMover : MonoBehaviour
         _movingCoroutine = StartCoroutine(Move(target, maxDistance));
     }
 
+    public void StartMoving(Vector3 target, float maxDistance = 0f)
+    {
+        if (_movingCoroutine != null)
+            StopCoroutine(_movingCoroutine);
+
+        _movingCoroutine = StartCoroutine(Move(target, maxDistance));
+    }
+
     private IEnumerator Move(Transform target, float maxDistance)
     {
         _waitFixedUpdate ??= new WaitForFixedUpdate();
@@ -33,6 +41,21 @@ public class BotMover : MonoBehaviour
             yield return _waitFixedUpdate;
 
             transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.fixedDeltaTime);
+        }
+
+        TargetReached = true;
+    }
+
+    private IEnumerator Move(Vector3 target, float maxDistance)
+    {
+        _waitFixedUpdate ??= new WaitForFixedUpdate();
+        TargetReached = false;
+
+        while ((target - transform.position).sqrMagnitude > maxDistance * maxDistance)
+        {
+            yield return _waitFixedUpdate;
+
+            transform.position = Vector3.MoveTowards(transform.position, target, _speed * Time.fixedDeltaTime);
         }
 
         TargetReached = true;

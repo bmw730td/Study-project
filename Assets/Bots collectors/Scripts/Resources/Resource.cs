@@ -9,15 +9,14 @@ public class Resource : MonoBehaviour
 {
     public readonly int Value = 1;
 
-    [SerializeField] private ResourceType _resourceType;
-
+    private ResourceConfig _config;
     private MeshFilter _filter;
     private MeshRenderer _renderer;
     private BoxCollider _collider;
 
     public event Action<Resource> Disabled;
 
-    public ResourceType Type => _resourceType;
+    public ResourceType Type => _config.Type;
 
     private void Awake()
     {
@@ -31,20 +30,19 @@ public class Resource : MonoBehaviour
         Disabled?.Invoke(this);
     }
 
-    [ContextMenu(nameof(SetType))]
-    public void SetType(ResourceType type)
+    public void SetConfig(ResourceConfig config)
     {
-        if (_resourceType != type)
+        if (_config != config)
         {
-            _resourceType = type;
+            _config = config;
 
-            transform.localScale = _resourceType.Scale;
+            transform.localScale = _config.Scale;
 
-            _filter.mesh = _resourceType.Mesh;
-            _renderer.material = _resourceType.Material;
+            _filter.mesh = _config.Mesh;
+            _renderer.material = _config.Material;
 
-            _collider.center = _resourceType.ColliderCenter;
-            _collider.size = _resourceType.ColliderSize;
+            _collider.center = _config.ColliderCenter;
+            _collider.size = _config.ColliderSize;
         }
     }
 }
