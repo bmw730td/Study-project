@@ -10,21 +10,21 @@ public class ResourceStorage : MonoBehaviour
 
     public void PutResourceIn(Resource resource)
     {
-        GetSlot(resource.Type).ChangeAmount(resource.Value);
+        GetSlot(resource.Type).AddAmount(resource.Value);
 
         if (resource.TryGetComponent(out ReturnAnnouncer announcer))
         {
-            announcer.AnnounceReturn();
+            announcer.InvokeReturn();
         }
         else
         {
-            Destroy(resource);
+            Destroy(resource.gameObject);
         }
     }
 
     public void RemoveResource(ResourceType type, int amount)
     {
-        GetSlot(type).ChangeAmount(amount * -1);
+        GetSlot(type).RemoveAmount(amount);
     }
 
     public ResourceStorageSlot GetSlot(ResourceType type)

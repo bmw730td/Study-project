@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
 
-public class ReturnAnnouncer : MonoBehaviour
+public class ReturnAnnouncer : MonoBehaviour, IReturnable<ReturnAnnouncer>
 {
-    public event Action<ReturnAnnouncer> ShouldBeReturned;
+    public event Action<ReturnAnnouncer> ShouldReturn;
 
-    public void AnnounceReturn()
+    public void InvokeReturn()
     {
-        ShouldBeReturned?.Invoke(this);
+        ShouldReturn?.Invoke(this);
     }
 }

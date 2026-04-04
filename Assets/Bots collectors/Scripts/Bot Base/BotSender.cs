@@ -160,11 +160,13 @@ public class BotSender : MonoBehaviour
 
     private void UpdateBotList()
     {
+        List<ReturnAnnouncer> createdObjects = _spawner.GetCreatedObjects();
+        
         _bots.Clear();
 
-        if (_spawner.CreatedObjects != null)
+        if (createdObjects != null)
         {
-            foreach (ReturnAnnouncer obj in _spawner.CreatedObjects)
+            foreach (ReturnAnnouncer obj in createdObjects)
             {
                 if (obj.TryGetComponent(out Bot bot))
                     _bots.Add(bot);
@@ -210,7 +212,7 @@ public class BotSender : MonoBehaviour
 
         if (bot.TryGetComponent(out ReturnAnnouncer announcer))
         {
-            announcer.AnnounceReturn();
+            announcer.InvokeReturn();
         }
         else
         {

@@ -7,22 +7,24 @@ public class InputReader : MonoBehaviour
     [SerializeField, Min(0f)] private float _useTargetRange;
     
     private PlayerInput _playerControls;
+    private Action<InputAction.CallbackContext> _useTargetSubscription;
 
     public event Action<RaycastHit> UsableHit;
 
     private void Awake()
     {
         _playerControls = new();
-
-        _playerControls.Player.Use.started += ctx => UseTarget();
+        _useTargetSubscription = ctx => UseTarget();
     }
     private void OnEnable()
     {
+        _playerControls.Player.Use.started += _useTargetSubscription;
         _playerControls.Enable();
     }
 
     private void OnDisable()
     {
+        _playerControls.Player.Use.started -= _useTargetSubscription;
         _playerControls.Disable();
     }
 

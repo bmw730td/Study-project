@@ -1,16 +1,23 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class StorageSlotViewer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _slotValues;
 
     private ResourceStorageSlot _storageSlot;
+    private Action<ResourceStorageSlot, int> _updateTextSubscription;
+
+    private void Awake()
+    {
+        _updateTextSubscription = (ctx1, ctx2) => UpdateText();
+    }
 
     private void OnDestroy()
     {
         if (_storageSlot != null)
-            _storageSlot.AmountChanged -= (ctx1, ctx2) => UpdateText();
+            _storageSlot.AmountChanged -= _updateTextSubscription;
     }
 
     public void SetStorageSlot(ResourceStorageSlot slot)
@@ -20,7 +27,7 @@ public class StorageSlotViewer : MonoBehaviour
         if (enabled && _storageSlot != null)
         {
             UpdateText();
-            _storageSlot.AmountChanged += (ctx1, ctx2) => UpdateText();
+            _storageSlot.AmountChanged += _updateTextSubscription;
         }
     }
 

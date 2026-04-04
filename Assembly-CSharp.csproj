@@ -95,6 +95,8 @@
     <Compile Include="Assets\Bots collectors\Scripts\Bot Base\GoalSetter.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Bot Base\ResourceScanner.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Bot Base\StorageChecker.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Other\Tester.cs" />
+    <Compile Include="Assets\Bots collectors\Scripts\Spawner\IReturnable.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Spawner\PositionRandomizer.cs" />
     <Compile Include="Assets\Health indicator\Scripts\Health\HealthBar.cs" />
     <Compile Include="Assets\Bots collectors\Scripts\Bot\Bot.cs" />

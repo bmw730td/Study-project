@@ -51,7 +51,7 @@ public class GoalSetter : MonoBehaviour, IUsable
     {
         _input.UsableHit -= StartGoalBuildBase;
         
-        if (usable.collider.TryGetComponent(out Ground _) && _botSpawner.ActiveBotsAmount >= MinBotAmountForBuildingBase)
+        if (usable.collider.TryGetComponent(out Ground _) && _botSpawner.ActiveObjectsAmount >= MinBotAmountForBuildingBase)
         {
             _baseBuilder.SetBasePosition(usable.point);
 
